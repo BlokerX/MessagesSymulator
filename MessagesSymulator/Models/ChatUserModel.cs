@@ -7,19 +7,30 @@ using System.Threading.Tasks;
 
 namespace MessagesSymulator.Models
 {
-    public class ChatUserModel
+    public class ChatUserModel : UserInformations
     {
         public ObservableCollection<ContactModel> Contacts { get; set; } = new ObservableCollection<ContactModel>();
         public ContactModel SelectedContact { get; set; }
-        public UserInformations MyInformations { get; set; } = new UserInformations()
+
+        // Deserialize
+        public ChatUserModel(SerializeObject.ChatUserModelSerializeObject serializeObject) : base(serializeObject)
         {
-            Username = "User",
-            UsernameColor = "White",
-            ImageSource = "https://www.cot.pl/wp-content/uploads/2019/10/placeholder-user.png"
-        };
+            foreach (var item in serializeObject.Contacts)
+            {
+                Contacts.Add(new ContactModel(item));
+            }
+            if(Contacts.Count > serializeObject.SelectedContactIndex)
+            SelectedContact = Contacts[serializeObject.SelectedContactIndex];
+
+        }
 
         public ChatUserModel()
         {
+            // Domyślne wartości
+            Username = "User";
+            UsernameColor = "White";
+            ImageSource = "https://www.cot.pl/wp-content/uploads/2019/10/placeholder-user.png";
+
             // todo ładowanie kontaktów oraz informacji
             if (Contacts.Count > 0)
                 SelectedContact = Contacts.First();
@@ -27,7 +38,9 @@ namespace MessagesSymulator.Models
 
         public ChatUserModel(UserInformations myInformations, ObservableCollection<ContactModel> contacts)
         {
-            MyInformations = myInformations;
+            Username = myInformations.Username;
+            UsernameColor = myInformations.UsernameColor;
+            ImageSource = myInformations.ImageSource;
             Contacts = contacts;
         }
 
@@ -35,5 +48,11 @@ namespace MessagesSymulator.Models
         {
             SelectedContact = selectedContact;
         }
+
+        public SerializeObject.ChatUserModelSerializeObject ToSerializeObject()
+        {
+            return new SerializeObject.ChatUserModelSerializeObject(this);
+        }
+
     }
 }

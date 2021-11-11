@@ -99,5 +99,10 @@ namespace MessagesSymulator
 
         #endregion Settings
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var mvm = (DataContext as MainViewModel);
+            mvm.SaveUserData();
+        }
     }
 }

@@ -28,7 +28,7 @@
                             <Ellipse Width="30" Height="30"
                                      Margin="8">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding MainInformations.ImageSource}"
+                                    <ImageBrush ImageSource="{Binding ImageSource}"
                                                 RenderOptions.BitmapScalingMode="Fant"/>
                                 </Ellipse.Fill>
                             </Ellipse>
@@ -37,8 +37,8 @@
                                         VerticalAlignment="Center"
                                         Margin="0,0,8,0">
 
-                                <Label Content="{Binding MainInformations.Username}"
-                                       Foreground="{Binding MainInformations.UsernameColor}"
+                                <Label Content="{Binding Username}"
+                                       Foreground="{Binding UsernameColor}"
                                        FontSize="16"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,0"/>

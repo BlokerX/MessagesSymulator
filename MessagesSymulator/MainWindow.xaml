@@ -10,7 +10,8 @@
         ResizeMode="CanResizeWithGrip"
         Background="Transparent"
         AllowsTransparency="False"
-        WindowStyle="None">
+        WindowStyle="None"
+        Closing="Window_Closing">
 
     <Window.DataContext>
         <viewmodel:MainViewModel/>
@@ -104,7 +105,7 @@
 
                             <Ellipse>
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding ActiveUser.MyInformations.ImageSource}"
+                                    <ImageBrush ImageSource="{Binding ActiveUser.ImageSource}"
                                         RenderOptions.BitmapScalingMode="Fant"/>
                                 </Ellipse.Fill>
                             </Ellipse>
@@ -139,7 +140,7 @@
                                                 </Setter>
 
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ActiveUser.MyInformations.ActiveState}" Value="False">
+                                                    <DataTrigger Binding="{Binding ActiveUser.ActiveState}" Value="False">
                                                         <Setter Property="Background" Value="Red"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -155,8 +156,8 @@
                         <StackPanel Orientation="Vertical"
                                 VerticalAlignment="Center">
 
-                            <Label Content="{Binding ActiveUser.MyInformations.Username}"
-                               Foreground="{Binding ActiveUser.MyInformations.UsernameColor}"
+                            <Label Content="{Binding ActiveUser.Username}"
+                               Foreground="{Binding ActiveUser.UsernameColor}"
                                FontSize="14" x:Name="UserNameLabel"
                                FontWeight="Bold"
                                Margin="0,0,0,-5">
@@ -196,7 +197,7 @@
 
                     <StackPanel Orientation="Horizontal">
 
-                        <Label Content="{Binding ActiveUser.SelectedContact.MainInformations.Username}"
+                        <Label Content="{Binding ActiveUser.SelectedContact.Username}"
                        VerticalAlignment="Center"
                        Foreground="#fffff9"
                        FontWeight="Bold"

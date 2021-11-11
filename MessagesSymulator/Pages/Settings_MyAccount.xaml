@@ -50,7 +50,7 @@
                                     <Grid>
                                         <Ellipse Width="80" Height="80">
                                             <Ellipse.Fill>
-                                                <ImageBrush ImageSource="{Binding ActiveUser.MyInformations.ImageSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                <ImageBrush ImageSource="{Binding ActiveUser.ImageSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                             RenderOptions.BitmapScalingMode="Fant"/>
                                             </Ellipse.Fill>
                                         </Ellipse>
@@ -71,7 +71,7 @@
                                     </Grid>
                                 </Border>
 
-                                <Label Content="{Binding ActiveUser.MyInformations.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                <Label Content="{Binding ActiveUser.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            Foreground="White"
                                            FontSize="18"
                                            FontWeight="SemiBold"
@@ -99,7 +99,7 @@
                                                    FontWeight="Medium"
                                                    Foreground="#b9bbbe"
                                                        Margin="0,0,0,-4"/>
-                                                <Label Content="{Binding ActiveUser.MyInformations.Username}"
+                                                <Label Content="{Binding ActiveUser.Username}"
                                                        FontSize="14"
                                                        FontWeight="Regular"
                                                        Foreground="White"
@@ -129,7 +129,7 @@
                                                    FontWeight="Medium"
                                                    Foreground="#b9bbbe"
                                                        Margin="0,0,0,-4"/>
-                                                <Label Content="{Binding ActiveUser.MyInformations.UsernameColor}"
+                                                <Label Content="{Binding ActiveUser.UsernameColor}"
                                                        FontSize="14"
                                                        FontWeight="Regular"
                                                        Foreground="White"

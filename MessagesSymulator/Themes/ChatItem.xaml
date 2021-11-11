@@ -12,7 +12,7 @@
 
                             <Ellipse Width="35" Height="35">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding  MainInformations.ImageSource}"
+                                    <ImageBrush ImageSource="{Binding ImageSource}"
                                             RenderOptions.BitmapScalingMode="Fant"/>
                                 </Ellipse.Fill>
                             </Ellipse>
@@ -20,8 +20,8 @@
                             <StackPanel Margin="5,0,0,4" VerticalAlignment="Center">
 
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Label Content="{Binding MainInformations.Username}"
-                                       Foreground="{Binding MainInformations.UsernameColor}"
+                                    <Label Content="{Binding Username}"
+                                       Foreground="{Binding UsernameColor}"
                                        FontSize="16"
                                        FontWeight="SemiBold"/>
                                     <Label Content="{Binding Time}"

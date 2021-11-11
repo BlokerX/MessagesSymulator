@@ -13,6 +13,14 @@ namespace MessagesSymulator.Models
         public string Link { get; set; }
         public Size ImageSize { get; set; }
 
+        // Deserialize
+        public LinkComponentModel(SerializeObject.LinkComponentModelSerializeObject serializeObject)
+        {
+            Link = serializeObject.Link;
+            ImageSize = serializeObject.ImageSize;
+            // todo czy dodać skalowanie automatyczne z objektu po serializacji
+        }
+
         public LinkComponentModel()
         {
             // Scaling Method!
@@ -22,5 +30,6 @@ namespace MessagesSymulator.Models
                 Height = System.Windows.SystemParameters.PrimaryScreenHeight / 6
             };
         }
+
     }
 }

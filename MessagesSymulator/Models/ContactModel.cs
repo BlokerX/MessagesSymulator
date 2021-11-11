@@ -7,11 +7,32 @@ using System.Threading.Tasks;
 
 namespace MessagesSymulator.Models
 {
-    public class ContactModel
+    public class ContactModel : UserInformations
     {
-        public UserInformations MainInformations { get; set; }
-        public ObservableCollection<MessageModel> Messages { get; set; }
+        public ObservableCollection<MessageModel> Messages { get; set; } = new ObservableCollection<MessageModel>();
         public bool IsFirstMy { get; set; } = true;
+
+        // Deserialize
+        public ContactModel(SerializeObject.ContactModelSerializeObject serializeObject) : base(serializeObject)
+        {
+            IsFirstMy = serializeObject.IsFirstMy;
+            foreach (var item in serializeObject.Messages)
+            {
+                Messages.Add(new MessageModel(item));
+            }
+        }
+
+        public ContactModel(ObservableCollection<MessageModel> messages, bool isFirstMy)
+        {
+            Messages = messages;
+            IsFirstMy = isFirstMy;
+        }
+
+        public ContactModel()
+        {
+
+        }
+
         public string LastMessage
         {
             get
