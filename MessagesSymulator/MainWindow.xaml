@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MessagesSymulator" xmlns:viewmodel="clr-namespace:MessagesSymulator.ViewModel"
+        xmlns:local="clr-namespace:MessagesSymulator" xmlns:viewmodel="clr-namespace:MessagesSymulator.ViewModel" xmlns:pages="clr-namespace:MessagesSymulator.Pages" xmlns:controls="clr-namespace:MessagesSymulator.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="620" Width="1200" 
         MinHeight="520" MinWidth="950"
@@ -62,30 +62,32 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="1">
+        <Grid x:Name="MainGrid" Grid.Row="1">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+            <Grid x:Name="MainPanel">
 
-            <Grid Background="#2f3136">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="240"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-                <Label Content="Contacts"
+                <Grid Background="#2f3136">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Contacts"
                        VerticalAlignment="Center"
                        Foreground="#8e9297"
                        Margin="8,0,0,0"/>
 
-                <Border Background="#202225"
+                    <Border Background="#202225"
                         Height="1"
                         VerticalAlignment="Bottom"/>
 
-                <ListView Grid.Row="1"
+                    <ListView Grid.Row="1"
                           ItemsSource="{Binding ActiveUser.Contacts}"
                           SelectedItem="{Binding ActiveUser.SelectedContact}"
                           Background="Transparent"
@@ -93,141 +95,162 @@
                           BorderThickness="0"
                           ItemContainerStyle="{StaticResource ContactCard}"/>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="2"
+                    <StackPanel Orientation="Horizontal" Grid.Row="2"
                             HorizontalAlignment="Stretch"
                             Background="#292b2f">
 
-                    <Grid Width="30" Height="30"
+                        <Grid Width="30" Height="30"
                           Margin="15,0,0,0">
 
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding ActiveUser.MyInformations.ImageSource}"
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding ActiveUser.MyInformations.ImageSource}"
                                         RenderOptions.BitmapScalingMode="Fant"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
+                                </Ellipse.Fill>
+                            </Ellipse>
 
-                        <Border Padding="2"
+                            <Border Padding="2"
                             Background="#292b2f"
                             CornerRadius="25"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
                             Margin="0,0,0,-2">
-                            
-                            <Grid>
 
-                                <Button Width="9" Height="9"
+                                <Grid>
+
+                                    <Button Width="9" Height="9"
                             Background="#3ba55d"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center">
-                                    <Button.Style>
-                                        <Style TargetType="Button">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
 
-                                            <Setter Property="Background" Value="#3ba55d"/>
+                                                <Setter Property="Background" Value="#3ba55d"/>
 
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border HorizontalAlignment="Stretch"
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border HorizontalAlignment="Stretch"
                                                                 VerticalAlignment="Stretch"
                                                                 CornerRadius="25"
                                                                 Background="{TemplateBinding Background}"/>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
 
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ActiveUser.MyInformations.ActiveState}" Value="False">
-                                                    <Setter Property="Background" Value="Red"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
-                                </Button>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ActiveUser.MyInformations.ActiveState}" Value="False">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
 
-                            </Grid>
-                        </Border>
+                                </Grid>
+                            </Border>
 
-                    </Grid>
+                        </Grid>
 
-                    <StackPanel Orientation="Vertical"
+                        <StackPanel Orientation="Vertical"
                                 VerticalAlignment="Center">
 
-                        <Label Content="{Binding ActiveUser.MyInformations.Username}"
+                            <Label Content="{Binding ActiveUser.MyInformations.Username}"
                                Foreground="{Binding ActiveUser.MyInformations.UsernameColor}"
-                               FontSize="14"
+                               FontSize="14" x:Name="UserNameLabel"
                                FontWeight="Bold"
                                Margin="0,0,0,-5">
-                        </Label>
+                            </Label>
 
-                        <Label Content="Custom Status"
+                            <Label Content="Custom Status"
                                Foreground="#86adb1"
                                FontWeight="Medium"
                                Margin="0,-5,0,0"/>
 
+                        </StackPanel>
+
                     </StackPanel>
 
-                </StackPanel>
+                    <controls:TextButton Grid.Row="2" Width="40" Height="40"
+                            Content="S"
+                            FontSize="25"
+                            Foreground="White"
+                            MouseOverColor="#32353a"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="7"
+                            Style="{StaticResource DefaultButton}"
+                            Click="SettingsButton_Click"/>
 
-            </Grid>
+                </Grid>
 
-            <Grid Grid.Column="1"
+                <Grid Grid.Column="1"
                   Background="#36393f">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="90"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="90"/>
+                    </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
 
-                    <Label Content="{Binding ActiveUser.SelectedContact.MainInformations.Username}"
+                        <Label Content="{Binding ActiveUser.SelectedContact.MainInformations.Username}"
                        VerticalAlignment="Center"
                        Foreground="#fffff9"
                        FontWeight="Bold"
                        FontSize="14"
                        Margin="8,0,0,0"/>
 
-                    <Border Width="10" Height="10"
+                        <Border Width="10" Height="10"
                             Background="#3ba55d"
                             CornerRadius="25"
                             Margin="5,0,0,0"
                             VerticalAlignment="Center"/>
 
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
 
-                    <Button Content="NP" Width="35" Height="35"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
+                        <Button Content="NP" Width="35" Height="35"
                             BorderThickness="0"
                             VerticalAlignment="Center"
-                            Margin="5,0,5,0"/>
+                            Style="{StaticResource DefaultButton}"
+                            Margin="5,0,5,0">
+                            <!--Button.Background>
+                            <ImageBrush ImageSource=""/>
+                        </Button.Background-->
+                        </Button>
 
-                    <Button Content="CP" Width="35" Height="35"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
+                        <Button Content="CP" Width="35" Height="35"
                             BorderThickness="0"
                             VerticalAlignment="Center"
-                            Margin="5,0,5,0"/>
+                            Style="{StaticResource DefaultButton}"
+                            Margin="5,0,5,0">
+                            <!--Button.Background>
+                            <ImageBrush ImageSource=""/>
+                        </Button.Background-->
+                        </Button>
 
-                    <Button Content="HELP" Width="35" Height="35"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
+                        <Button Content="HELP" Width="35" Height="35"
                             BorderThickness="0"
                             VerticalAlignment="Center"
-                            Margin="5,0,10,0"/>
+                            Style="{StaticResource DefaultButton}"
+                            Margin="5,0,10,0">
+                            <!--Button.Background>
+                            <ImageBrush ImageSource=""/>
+                        </Button.Background-->
+                        </Button>
 
-                </StackPanel>
+                    </StackPanel>
 
-                <Border Background="#202225"
+                    <Border Background="#202225"
                         Height="1"
                         VerticalAlignment="Bottom"/>
 
-                <ListView Grid.Row="1"
+                    <ListView Grid.Row="1"
                           ItemsSource="{Binding ActiveUser.SelectedContact.Messages}"
                           Background="Transparent"
                           BorderBrush="Transparent"
@@ -235,31 +258,39 @@
                           ItemContainerStyle="{StaticResource ChatItem}" 
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
 
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="90"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="90"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBox Grid.ColumnSpan="2"
+                        <TextBox Grid.ColumnSpan="2"
                              Style="{StaticResource MessageBox}"
                              Margin="15,20,15,20"/>
 
-                    <Button Content="Send"
+                        <Button Content="Send"
                             Grid.Column="1"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
                             Width="70"
                             Height="50"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
                             BorderThickness="0"
+                            Style="{StaticResource DefaultButton}"
                             Command="{Binding SendCommand}">
-                    </Button>
+                            <!--Button.Background>
+                            <ImageBrush ImageSource=""/>
+                        </Button.Background-->
+
+                        </Button>
+
+                    </Grid>
 
                 </Grid>
 
             </Grid>
+
+            <pages:Settings x:Name="SettingsPanel"
+                            Visibility="Hidden"/>
 
         </Grid>
 

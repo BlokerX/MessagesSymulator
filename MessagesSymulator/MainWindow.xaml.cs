@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MessagesSymulator.Controls;
+using MessagesSymulator.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +25,16 @@ namespace MessagesSymulator
         public MainWindow()
         {
             InitializeComponent();
+
+            #region SettingsPanelInitialize
+
+            SettingsPanel.BackToTheMenuButton.Click += SettingsCloseButton_Click;
+            SettingsPanel.Settings_MyAccount_Page.EditUsernameButton.Click += EditUsernameButton_Click;
+
+            #endregion
         }
+
+        #region BorderApp
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -52,6 +63,41 @@ namespace MessagesSymulator
         {
             Application.Current.Shutdown();
         }
+
+        #endregion
+
+        #region Settings
+
+        #region Settings Open/Close
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsPanel.Visibility = Visibility.Visible;
+            MainPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void SettingsCloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainPanel.Visibility = Visibility.Visible;
+            SettingsPanel.Visibility = Visibility.Hidden;
+        }
+
+        #endregion
+
+        #region MyAccount
+
+        #region EditUsernameButton
+
+        private void EditUsernameButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        #endregion EditUsernameButton
+
+        #endregion MyAccount
+
+        #endregion Settings
 
     }
 }

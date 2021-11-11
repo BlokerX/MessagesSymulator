@@ -13,6 +13,7 @@ namespace MessagesSymulator.ViewModel
     class MainViewModel : ObservableObject
     {
         public List<ChatUserModel> UsersList { get; set; }
+
         public ChatUserModel ActiveUser { get; set; }
 
         // Commands
@@ -64,7 +65,7 @@ namespace MessagesSymulator.ViewModel
                 {
                     Username = "Orion Łukasik",
                     UsernameColor = "LightCyan",
-                    ImageSource = "https://www.kupgwiazde.com/media/wysiwyg/zodiacs_de/orion.jpg"
+                    ImageSource = "https://uwalls.pl/gallery/53/31493_thumb_b1000.jpg"
                 },
 
                 Messages = new ObservableCollection<MessageModel>()
@@ -77,7 +78,7 @@ namespace MessagesSymulator.ViewModel
                 {
                     Username = "Wiktor Anek",
                     UsernameColor = "Navy",
-                    ImageSource = "https://www.abdn.ac.uk/stories/song-of-the-oceans/assets/UYxDb1S4Ba/shutterstock_158257880-2560x1707.jpeg"
+                    ImageSource = "https://lh3.googleusercontent.com/proxy/mBhauPzNO4rfoQykuDpvrQuX3BAhzQYowIpBQjJbVGaA7-BSuOf_FWmRgKSHDpKnwu08BwZDEwFDTEAZ-o7nWV0_p_G7wKfv1zhj8CFle9MXJQG4lle7_XM"
                 },
 
                 Messages = new ObservableCollection<MessageModel>()
@@ -125,7 +126,26 @@ namespace MessagesSymulator.ViewModel
                         MainInformations = item.MainInformations,
                         Message = "Hello world!",
                         Time = DateTime.Now.Date,
-                        ImageLinks = new List<LinkComponentModel>(),
+                        ImageLinks = new List<LinkComponentModel>() {
+                            new LinkComponentModel()
+                            {
+                                Link = "http://2.bp.blogspot.com/-zVqfkF3YTqU/VQLhqBLGguI/AAAAAAAAANs/RYu3h4Gu6l4/s1600/slenderman28n-1-web.jpg"
+                            }
+                        },
+                        IsFirst = true
+                    });
+
+                    item.Messages.Add(new MessageModel()
+                    {
+                        MainInformations = item.MainInformations,
+                        Message = "Hello world!",
+                        Time = DateTime.Now.Date,
+                        ImageLinks = new List<LinkComponentModel>() {
+                            new LinkComponentModel()
+                            {
+                                Link = "https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"
+                            }
+                        },
                         IsFirst = true
                     });
 
@@ -160,18 +180,21 @@ namespace MessagesSymulator.ViewModel
                             Time = DateTime.Now.Date,
                             IsFirst = false
                         });
-                        if(j==i*2-1 && i == 2)
-                        item.Messages.Add(new MessageModel()
-                        {
-                            MainInformations = item.MainInformations,
-                            Message = "Hello word! " + (j + 1).ToString(),
-                            Time = DateTime.Now.Date,
-                            ImageLinks = new List<LinkComponentModel>()
+                        if (j == i * 2 - 1 && i == 2)
+                            item.Messages.Add(new MessageModel()
                             {
-                                new LinkComponentModel(){Link="https://scontent.fpoz4-1.fna.fbcdn.net/v/t39.30808-6/242868839_3094191224197301_3106382277220540879_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=e3f864&_nc_ohc=XmMdQ4Dbbm4AX9gtq4r&_nc_ht=scontent.fpoz4-1.fna&oh=4eaab412bc11cfe9f548138e0a19ad5d&oe=618BC5F0"}
+                                MainInformations = item.MainInformations,
+                                Message = "Hello word! " + (j + 1).ToString(),
+                                Time = DateTime.Now.Date,
+                                ImageLinks = new List<LinkComponentModel>()
+                            {
+                                new LinkComponentModel()
+                                {
+                                    Link="https://samequizy.pl/wp-content/uploads/2016/03/filing_images_3e6948328f17.jpeg"
+                                }
                             },
-                            IsFirst = false
-                        });
+                                IsFirst = false
+                            });
 
                     }
                 }

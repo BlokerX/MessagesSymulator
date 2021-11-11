@@ -12,6 +12,8 @@
                 <ResourceDictionary Source="./Themes/WindowButton.xaml"/>
                 <ResourceDictionary Source="./Themes/WindowCloseButton.xaml"/>
                 <ResourceDictionary Source="./Themes/StylishScrollbar.xaml"/>
+                <ResourceDictionary Source="./Themes/DefaultButton.xaml"/>
+                <ResourceDictionary Source="./Themes/BackgroundButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
