@@ -1,0 +1,44 @@
+--- WSTĘPNY OPIS APLIKACJI ---
+
+Nazwa aplikacji: MessagesSymulator(by BlokerCompany™)
+
+Autorzy: BlokerCompany™
+
+Prawa autorskie: ?-?
+
+Opis:
+	
+(PL)
+-----------------------------------------------------------------------------
+
+Aplikacja MessagesSymulator(by BlokerCompany™) jest symulatorem wiadomości
+opartym designowo na popularnych komunikatorach.
+
+Program ma na celu udostępnić użytkownikowi podstawowy interfeis
+symulowanego środowiska komunikacyjnego (w skrócie ISŚK) w którym
+można twożyć przykładowe konwersacje.
+
+MessagesSymulator będzie posiadać podstawowe funcje takie jak:
+- Wysyłanie wiadomości na pseudoczacie,
+- Menadżer tworzenia oraz zmiany obecnego użytkownika,
+- Odczytywanie i zapisywanie stanu kontaktów 
+  (w tym wiadomości i wszelkich informacji z tym związanych).
+	
+Przewidziane tematy aktualizacji:
+- Dostępność szerszej gamy motywów,
+- Eksport czatu do formatu *.txt.
+
+-----------------------------------------------------------------------------
+
+Dostępność platformowa:
+- Windows XP/7/8*/10/11.
+
+Języki programowania:
+- C#.
+
+Wybrane technologie:
+- .NET Framework 4.7.2,
+- WindowsPresentationFundation(WPF).
+
+Wymagania aplikacji:
+- niezdefiniowano -

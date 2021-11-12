@@ -7,10 +7,10 @@
              mc:Ignorable="d" Name="ControlElement"
              d:DesignHeight="900" d:DesignWidth="1600">
     <Grid>
-        
+
         <Button x:Name="MainGrid" Style="{StaticResource BackgroundButton}"
                 Background="#BF000000"
-                Click="MainGrid_Click">
+                Click="BackgroundButton_Click">
         </Button>
 
         <Border HorizontalAlignment="Center"
@@ -21,12 +21,14 @@
             <StackPanel>
                 <StackPanel Margin="15">
 
-                    <Label Content="Zmień swoją nazwę użytkownika"
+                    <Label x:Name="TitleLabel"
+                           Content="Title"
                            Foreground="White"
                            HorizontalAlignment="Center"
                            FontWeight="Bold"
                            FontSize="22"/>
-                    <Label Content="Wprowadź nową nazwę użytkownika"
+                    <Label x:Name="SubtitleLabel"
+                           Content="Subtitle"
                            Foreground="#b8babd"
                            HorizontalAlignment="Center"
                            FontSize="14"/>
@@ -34,10 +36,11 @@
                     <StackPanel>
                         <StackPanel>
 
-                            <Label Content="NAZWA UŻYTKOWNIKA"
-                                                   FontWeight="Medium"
-                                                   Foreground="#b9bbbe"
-                                                       Margin="0,10,0,5"/>
+                            <Label x:Name="PropertyNameLabel" 
+                                   Content="PROPERTY NAME"
+                                   FontWeight="Medium"
+                                   Foreground="#b9bbbe"
+                                   Margin="0,10,0,5"/>
 
                             <local:PropertiesEditTextBox x:Name="NameTextBox"/>
 

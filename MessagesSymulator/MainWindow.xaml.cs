@@ -73,12 +73,12 @@ namespace MessagesSymulator
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             SettingsPanel.Visibility = Visibility.Visible;
-            MainPanel.Visibility = Visibility.Hidden;
+            MainGridSite.Visibility = Visibility.Hidden;
         }
 
         private void SettingsCloseButton_Click(object sender, RoutedEventArgs e)
         {
-            MainPanel.Visibility = Visibility.Visible;
+            MainGridSite.Visibility = Visibility.Visible;
             SettingsPanel.Visibility = Visibility.Hidden;
         }
 
@@ -86,11 +86,35 @@ namespace MessagesSymulator
 
         #region MyAccount
 
-        #region EditUsernameButton
+        #region EditButtons
 
         private void EditUsernameButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            var enp = new EditNamePopup("Zmień swoją nazwę użytkownika", 
+                "Wprowadź nową nazwę użytkownika", 
+                "NAZWA UŻYTKOWNIKA");
+            enp.Loaded += EditUsernamePopup_Loaded;
+            enp.SaveButtonEvent += EditUsernamePopup_SaveButtonEvent;
+            enp.BackgroundClickEvent += EditPopup_BackgroundClickEvent;
+            MainPanel.Children.Add(enp);
+        }
+
+        private void EditUsernamePopup_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as EditNamePopup).NameTextBox.TextBoxSourceElement.Text = (DataContext as MainViewModel).ActiveUser.Username;
+        }
+
+        private void EditUsernamePopup_SaveButtonEvent(object sender, string e)
+        {
+            var enp = (sender as EditNamePopup);
+            (DataContext as MainViewModel).ActiveUser.Username = enp.NameTextBox.TextBoxSourceElement.Text;
+            MainPanel.Children.Remove(enp);
+        }
+
+        private void EditPopup_BackgroundClickEvent(object sender, RoutedEventArgs e)
+        {
+            var enp = (sender as EditNamePopup); 
+            MainPanel.Children.Remove(enp);
         }
 
         #endregion EditUsernameButton

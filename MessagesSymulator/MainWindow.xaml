@@ -63,9 +63,9 @@
             </Grid>
         </Border>
 
-        <Grid x:Name="MainGrid" Grid.Row="1">
+        <Grid x:Name="MainPanel" Grid.Row="1">
 
-            <Grid x:Name="MainPanel">
+            <Grid x:Name="MainGridSite">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="240"/>
@@ -156,8 +156,8 @@
                         <StackPanel Orientation="Vertical"
                                 VerticalAlignment="Center">
 
-                            <Label Content="{Binding ActiveUser.Username}"
-                               Foreground="{Binding ActiveUser.UsernameColor}"
+                            <Label Content="{Binding ActiveUser.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               Foreground="{Binding ActiveUser.UsernameColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                FontSize="14" x:Name="UserNameLabel"
                                FontWeight="Bold"
                                Margin="0,0,0,-5">

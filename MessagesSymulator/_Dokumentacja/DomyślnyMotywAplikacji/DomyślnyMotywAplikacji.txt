@@ -1,0 +1,115 @@
+-- DOMYŚLNY MOTYW APLIKACJI ---
+
+Spis kolorów:
+
+- Tło w pasku aplikacji = #202225
+- Napis w pasku aplikacji = #72767d
+
+- Tło przycisku okna po najechaniu = #282b2e
+- Tło przycisku okna po najechaniu (close) = Red
+
+- Tło głównego obszaru klienckiego aplikacji = #202225
+- Tło panelu czatu = #36393f
+
+- Napis główny w panelu kontaktów = #8e9297
+
+- Tło panelu kontaktów = #2f3136
+- Tło wybranego kontaktu na liście kontaktów = #393c43
+- Tło najechanego kontaktu na liście kontaktów = #34373c
+- Nazwa kontaktu na liście kontaktów = White
+- Ostatnia wiadomość kontaktu na liście kontaktów = #afb1b5
+
+- MouseOverPrzyciskiWPoluStatusu = #32353a 
+
+- Kolor kółka aktywności "AKTYWNY" = #3ba55d
+- Kolor kółka aktywności "NIEAKTYWNY" = #ed4245
+
+- Tło panelu mojego statusu = #292b2f
+- Nazwa mojego użytkownika = White
+- Status mojego użytkownika  = #86adb1
+
+- Nazwa wybranego kontaktu na górze czatu = #fffff9
+- Nazwa kontaktu we wiadomości = #f2ffff
+- Data wysłania we wiadomości = #5f7673
+- Treść wiadomości = #dcddde
+
+- Tło okna wysyłania wiadomości = #40444b
+- Domyślny tekst w oknie wysyłania wiadomości = #5f727a
+- Tekst wpisany w oknie wysyłania wiadomości = #e1e6e2
+
+- ScrollBarColor = #202225
+- ScrollBarBackgroundColor = #2e3338
+
+--- Panel Ustawień ---
+- SettingsListBackground = #2f3136
+- EditSettingsPanelBackground = #36393f
+
+- SettingPanelHeadersForeground = White
+
+- HeadersInListForeground = #8e9297
+
+- SettingsCardsTextForeground = #b9bbbe
+- SelectedSettingsCardsTextForeground = White
+- SelectedSettingsCardsBackground = #393c43
+- MouseOverSettingsCardsBackground = #34373c
+
+- KreskaOdstępowawSettingsList = #3b3d42
+
+- KreskaOdstępowaWPaneluEdycji = #42454a
+
+- UserCardTopBackground = #09191a
+- UserCardBottomBackground = #202225
+- UserCardInformationsPanelBackground = #2f3136
+
+- NagłówkiDanychForeground = #b9bbbe
+- Dane = White
+
+- PrzyciskiEdycjiBackground = #4f545c
+- MouseOverPrzyciskiEdycjiBackground = #5d6269
+- PrzyciskiEdycjiForeground = #ebecec
+
+- BlueButtonBackground = #5865f2
+- MouseOverBlueButtonBackground = #4751c4
+- BlueButtonForeground = White
+
+- RedButtonBackground = #ed4245
+- MouseOverRedButtonBackground = #c03537
+
+- DeleteAcountButtonBorders = #ed4245
+
+----------------------
+
+Spis grafik:
+
+???
+- Ikona przycisku zamykania programu =
+- Ikona przycisku zmiany stanu okna programu =
+- Ikona przycisku minimalizacji programu =
+???
+
+- Domyślny awatar użytkownika =
+
+- Przycisk "Zadzwoń" =
+- Przycisk "Rozpocznij połączenie video" =
+
+- Przycisk "Dodaj załącznik do wiadomości" =
+
+- Przycisk "Wyślij wiadomość"
+
+
+Dźwięki:
+
+- Wysyłanie wiadomości =
+- Odbieranie wiadomości =
+- Nowa wiadomość (Powiadomienie) =
+- Dzwonienie [DZWONEK] =
+- Nieodebrane (koniec połączenia) =
+- Koniec rozmowy =
+- Zmiana statusu =
+- Wysłanie zaproszenia do znajomych =
+- Dodanie znajomego =
+- Usunięcie znajomego (lub odrzucenie zaproszenia do znajomych) =
+- Powiadomienie o aktywności znajomego =
+- Do "Ustawienia" =
+- Powrót z "Ustawienia" =
+- Zmiana elementu/znajomego na liście =

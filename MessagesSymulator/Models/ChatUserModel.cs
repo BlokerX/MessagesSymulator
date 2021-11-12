@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MessagesSymulator.Core;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,7 +11,22 @@ namespace MessagesSymulator.Models
     public class ChatUserModel : UserInformations
     {
         public ObservableCollection<ContactModel> Contacts { get; set; } = new ObservableCollection<ContactModel>();
-        public ContactModel SelectedContact { get; set; }
+        //public ContactModel SelectedContact { get; set; }
+
+        private ContactModel _selectedContact;
+
+        public ContactModel SelectedContact
+        {
+            get { return _selectedContact; }
+            set {
+                if (value != _selectedContact)
+                {
+                    _selectedContact = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
         // Deserialize
         public ChatUserModel(SerializeObject.ChatUserModelSerializeObject serializeObject) : base(serializeObject)

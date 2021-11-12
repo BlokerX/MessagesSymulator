@@ -99,7 +99,7 @@
                                                    FontWeight="Medium"
                                                    Foreground="#b9bbbe"
                                                        Margin="0,0,0,-4"/>
-                                                <Label Content="{Binding ActiveUser.Username}"
+                                                <Label Content="{Binding ActiveUser.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                        FontSize="14"
                                                        FontWeight="Regular"
                                                        Foreground="White"
@@ -129,7 +129,7 @@
                                                    FontWeight="Medium"
                                                    Foreground="#b9bbbe"
                                                        Margin="0,0,0,-4"/>
-                                                <Label Content="{Binding ActiveUser.UsernameColor}"
+                                                <Label Content="{Binding ActiveUser.UsernameColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                        FontSize="14"
                                                        FontWeight="Regular"
                                                        Foreground="White"
