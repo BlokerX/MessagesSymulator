@@ -25,15 +25,25 @@ namespace MessagesSymulator.Controls
             InitializeComponent();
         }
 
-        private void MainGrid_Click(object sender, RoutedEventArgs e)
+        public EditNamePopup(string title, string subtitle, string propertyName) : this()
         {
-
+            this.TitleLabel.Content = title;
+            this.SubtitleLabel.Content = subtitle;
+            this.PropertyNameLabel.Content = propertyName;
         }
 
+        public event EventHandler<string> SaveButtonEvent;
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveButtonEvent?.Invoke(this, NameTextBox.TextBoxSourceElement.Text);
         }
+
+        public event RoutedEventHandler BackgroundClickEvent;
+        private void BackgroundButton_Click(object sender, RoutedEventArgs e)
+        {
+            BackgroundClickEvent?.Invoke(this, e);
+        }
+
     }
 
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 using System.IO;
+using System.ComponentModel;
 
 namespace MessagesSymulator.ViewModel
 {
