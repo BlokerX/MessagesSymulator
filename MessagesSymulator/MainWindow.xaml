@@ -262,27 +262,43 @@
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="180"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBox Grid.ColumnSpan="2"
                              Style="{StaticResource MessageBox}"
                              Margin="15,20,15,20"/>
 
-                        <Button Content="Send"
-                            Grid.Column="1"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                            Width="70"
-                            Height="50"
-                            BorderThickness="0"
-                            Style="{StaticResource DefaultButton}"
-                            Command="{Binding SendCommand}">
-                            <!--Button.Background>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+
+                            <Button Content="Add Link"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Width="70"
+                                    Height="50"
+                                    BorderThickness="0"
+                                    Style="{StaticResource DefaultButton}"
+                                    Click="AddLinkButton_Click"
+                                    Margin="10,0,10,0">
+                                <!--Button.Background>
                             <ImageBrush ImageSource=""/>
                         </Button.Background-->
+                            </Button>
 
-                        </Button>
+                            <Button Content="Send"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Width="70"
+                                    Height="50"
+                                    BorderThickness="0"
+                                    Style="{StaticResource DefaultButton}"
+                                    Command="{Binding SendCommand}">
+                                <!--Button.Background>
+                            <ImageBrush ImageSource=""/>
+                        </Button.Background-->
+                            </Button>
+
+                        </StackPanel>
 
                     </Grid>
 

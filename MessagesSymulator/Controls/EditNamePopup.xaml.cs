@@ -16,16 +16,16 @@ using System.Windows.Shapes;
 namespace MessagesSymulator.Controls
 {
     /// <summary>
-    /// Logika interakcji dla klasy EditNamePopup.xaml
+    /// Logika interakcji dla klasy EditTextPopup.xaml
     /// </summary>
-    public partial class EditNamePopup : UserControl
+    public partial class EditTextPopup : UserControl
     {
-        public EditNamePopup()
+        public EditTextPopup()
         {
             InitializeComponent();
         }
 
-        public EditNamePopup(string title, string subtitle, string propertyName) : this()
+        public EditTextPopup(string title, string subtitle, string propertyName) : this()
         {
             this.TitleLabel.Content = title;
             this.SubtitleLabel.Content = subtitle;

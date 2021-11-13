@@ -1,5 +1,6 @@
 ﻿using MessagesSymulator.Controls;
 using MessagesSymulator.ViewModel;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace MessagesSymulator
 
             SettingsPanel.BackToTheMenuButton.Click += SettingsCloseButton_Click;
             SettingsPanel.Settings_MyAccount_Page.EditUsernameButton.Click += EditUsernameButton_Click;
+            SettingsPanel.Settings_MyAccount_Page.EditUsernameColorButton.Click += EditUsernameColorButton_Click;
 
             #endregion
         }
@@ -88,10 +90,12 @@ namespace MessagesSymulator
 
         #region EditButtons
 
+        #region EditUsernameButton
+
         private void EditUsernameButton_Click(object sender, RoutedEventArgs e)
         {
-            var enp = new EditNamePopup("Zmień swoją nazwę użytkownika", 
-                "Wprowadź nową nazwę użytkownika", 
+            var enp = new EditTextPopup("Zmień swoją nazwę użytkownika",
+                "Wprowadź nową nazwę użytkownika",
                 "NAZWA UŻYTKOWNIKA");
             enp.Loaded += EditUsernamePopup_Loaded;
             enp.SaveButtonEvent += EditUsernamePopup_SaveButtonEvent;
@@ -101,19 +105,48 @@ namespace MessagesSymulator
 
         private void EditUsernamePopup_Loaded(object sender, RoutedEventArgs e)
         {
-            (sender as EditNamePopup).NameTextBox.TextBoxSourceElement.Text = (DataContext as MainViewModel).ActiveUser.Username;
+            (sender as EditTextPopup).NameTextBox.TextBoxSourceElement.Text = (DataContext as MainViewModel).ActiveUser.Username;
         }
 
         private void EditUsernamePopup_SaveButtonEvent(object sender, string e)
         {
-            var enp = (sender as EditNamePopup);
+            var enp = (sender as EditTextPopup);
             (DataContext as MainViewModel).ActiveUser.Username = enp.NameTextBox.TextBoxSourceElement.Text;
             MainPanel.Children.Remove(enp);
         }
 
+        #endregion
+
+        #region EditUsernameButton
+
+        private void EditUsernameColorButton_Click(object sender, RoutedEventArgs e)
+        {
+            var enp = new EditTextPopup("Zmień kolor swojojej nazwy użytkownika",
+                "Wprowadź nowy kolor nazwy użytkownika",
+                "KOLOR NAZWY UŻYTKOWNIKA");
+            enp.Loaded += EditUsernameColorPopup_Loaded;
+            enp.SaveButtonEvent += EditUsernameColorPopup_SaveButtonEvent;
+            enp.BackgroundClickEvent += EditPopup_BackgroundClickEvent;
+            MainPanel.Children.Add(enp);
+        }
+
+        private void EditUsernameColorPopup_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as EditTextPopup).NameTextBox.TextBoxSourceElement.Text = (DataContext as MainViewModel).ActiveUser.UsernameColor;
+        }
+
+        private void EditUsernameColorPopup_SaveButtonEvent(object sender, string e)
+        {
+            var enp = (sender as EditTextPopup);
+            (DataContext as MainViewModel).ActiveUser.UsernameColor = enp.NameTextBox.TextBoxSourceElement.Text;
+            MainPanel.Children.Remove(enp);
+        }
+
+        #endregion
+
         private void EditPopup_BackgroundClickEvent(object sender, RoutedEventArgs e)
         {
-            var enp = (sender as EditNamePopup); 
+            var enp = (sender as EditTextPopup);
             MainPanel.Children.Remove(enp);
         }
 
@@ -127,6 +160,15 @@ namespace MessagesSymulator
         {
             var mvm = (DataContext as MainViewModel);
             mvm.SaveUserData();
+        }
+
+        private void AddLinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            var fileDialog = new OpenFileDialog();
+            if ((bool)fileDialog.ShowDialog())
+            {
+                var link = fileDialog.FileName;
+            }
         }
     }
 }
