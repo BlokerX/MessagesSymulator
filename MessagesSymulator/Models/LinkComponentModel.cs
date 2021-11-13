@@ -14,11 +14,9 @@ namespace MessagesSymulator.Models
         public Size ImageSize { get; set; }
 
         // Deserialize
-        public LinkComponentModel(SerializeObject.LinkComponentModelSerializeObject serializeObject)
+        public LinkComponentModel(SerializeObject.LinkComponentModelSerializeObject serializeObject) : this()
         {
             Link = serializeObject.Link;
-            ImageSize = serializeObject.ImageSize;
-            // todo czy dodać skalowanie automatyczne z objektu po serializacji
         }
 
         public LinkComponentModel()

@@ -10,8 +10,22 @@ namespace MessagesSymulator.Models
     {
         public string Message { get; set; }
         public List<LinkComponentModel> ImageLinks { get; set; } = new List<LinkComponentModel>();
-        public DateTime Time { get; set; }
         public bool IsFirst { get; set; }
+        public DateTime Time { get; set; }
+
+        public string GetShortTime 
+        {
+            get
+            {
+                var timeSegments = Time.GetDateTimeFormats('t');
+                string x = "";
+                foreach (var item in timeSegments)
+                {
+                    x += item;
+                }
+                return x;
+            }
+        }
 
         // Deserialize
         public MessageModel(SerializeObject.MessageModelSerializeObject serializeObject) : base(serializeObject)

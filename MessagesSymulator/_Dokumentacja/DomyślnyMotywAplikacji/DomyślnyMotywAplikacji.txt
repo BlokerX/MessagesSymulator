@@ -32,6 +32,7 @@ Spis kolorów:
 - Nazwa kontaktu we wiadomości = #f2ffff
 - Data wysłania we wiadomości = #5f7673
 - Treść wiadomości = #dcddde
+- MouseOver Tło wiadomości = #32353b
 
 - Tło okna wysyłania wiadomości = #40444b
 - Domyślny tekst w oknie wysyłania wiadomości = #5f727a

@@ -169,6 +169,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="_Dokumentacja\InstrukcjaObsługi\Pomoc.docx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -178,6 +179,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="_Dokumentacja\DomyślnyMotywAplikacji\DomyślnyMotywAplikacji.txt" />
+    <Resource Include="_Dokumentacja\DomyślnyMotywAplikacji\PrzykładWygląduAplikacji.png" />
+    <Resource Include="_Dokumentacja\DomyślnyMotywAplikacji\PrzykładWygląduAplikacji2.png" />
+    <Resource Include="_Dokumentacja\Twórcy.txt" />
+    <Resource Include="_Dokumentacja\WstępnyOpisAplikacji.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_Dokumentacja\DomyślnyMotywAplikacji\DzwiękiDlaDomyślnegoMotywuAplikacji\" />
+    <Folder Include="_Dokumentacja\DomyślnyMotywAplikacji\GrafikaDlaDomyślnegoMotywuAplikacji\" />
+    <Folder Include="_Dokumentacja\IkonaAplikacji\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

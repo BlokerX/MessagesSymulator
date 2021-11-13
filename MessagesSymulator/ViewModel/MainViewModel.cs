@@ -56,7 +56,7 @@ namespace MessagesSymulator.ViewModel
                         ImageSource = ActiveUser.ImageSource,
                         ActiveState = ActiveUser.ActiveState,
                         Message = Message,
-                        Time = DateTime.Now.Date,
+                        Time = DateTime.Now,
                         IsFirst = ActiveUser.SelectedContact.IsFirstMy
                     });
                     ActiveUser.SelectedContact.IsFirstMy = false;
@@ -126,7 +126,7 @@ namespace MessagesSymulator.ViewModel
                             ImageSource = item.ImageSource,
                             ActiveState = item.ActiveState,
                             Message = "Hello world!",
-                            Time = DateTime.Now.Date,
+                            Time = DateTime.Now,
                             ImageLinks = new List<LinkComponentModel>() {
                             new LinkComponentModel()
                             {
@@ -142,8 +142,7 @@ namespace MessagesSymulator.ViewModel
                             UsernameColor = item.UsernameColor,
                             ImageSource = item.ImageSource,
                             ActiveState = item.ActiveState,
-                            Message = "Hello world!",
-                            Time = DateTime.Now.Date,
+                            Time = DateTime.Now,
                             ImageLinks = new List<LinkComponentModel>() {
                             new LinkComponentModel()
                             {
@@ -151,6 +150,102 @@ namespace MessagesSymulator.ViewModel
                             }
                         },
                             IsFirst = true
+                        });
+
+                        item.Messages.Add(new MessageModel()
+                        {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Message = "Hello word! " + (1).ToString(),
+                            Time = DateTime.Now,
+                            ImageLinks = new List<LinkComponentModel>()
+                                    {
+                                        new LinkComponentModel()
+                                        {
+                                            Link="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+                                        }
+                                    },
+                            IsFirst = false
+                        });
+
+                        item.Messages.Add(new MessageModel()
+                        {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Message = "Hello world!",
+                            Time = DateTime.Now,
+                            ImageLinks = new List<LinkComponentModel>() {
+                            new LinkComponentModel()
+                            {
+                                Link = "https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"
+                            }
+                        },
+                            IsFirst = false
+                        });
+
+                        item.Messages.Add(new MessageModel()
+                        {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Message = "Hello word! " + (1).ToString(),
+                            Time = DateTime.Now,
+                            IsFirst = false
+                        });
+
+                        item.Messages.Add(new MessageModel()
+                        {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Message = "Hello word! " + (1).ToString(),
+                            Time = DateTime.Now,
+                            IsFirst = false
+                        });
+
+                        item.Messages.Add(new MessageModel()
+                        {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Message = "Hello word! " + (1).ToString(),
+                            Time = DateTime.Now,
+                            IsFirst = false
+                        });
+
+                        item.Messages.Add(new MessageModel()
+                        {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Message = "Hello word! " + (1).ToString(),
+                            Time = DateTime.Now,
+                            IsFirst = false
+                        });
+
+                        item.Messages.Add(new MessageModel()
+                        {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Time = DateTime.Now,
+                            ImageLinks = new List<LinkComponentModel>()
+                                    {
+                                        new LinkComponentModel()
+                                        {
+                                            Link="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+                                        }
+                                    },
+                            IsFirst = false
                         });
 
                         for (int j = 0; j < i * 2; j++)
@@ -163,7 +258,7 @@ namespace MessagesSymulator.ViewModel
                                 ImageSource = item.ImageSource,
                                 ActiveState = item.ActiveState,
                                 Message = "Hello word! " + (j + 1).ToString(),
-                                Time = DateTime.Now.Date,
+                                Time = DateTime.Now,
                                 IsFirst = false
                             });
 
@@ -176,43 +271,25 @@ namespace MessagesSymulator.ViewModel
                             ImageSource = item.ImageSource,
                             ActiveState = item.ActiveState,
                             Message = "Hello world!",
-                            Time = DateTime.Now.Date,
+                            Time = DateTime.Now,
                             IsFirst = true
                         });
 
-                        for (int j = 0; j < i * 2; j++)
+
+
+                        item.Messages.Add(new MessageModel()
                         {
+                            Username = item.Username,
+                            UsernameColor = item.UsernameColor,
+                            ImageSource = item.ImageSource,
+                            ActiveState = item.ActiveState,
+                            Message = "Hello word! " + (1).ToString(),
+                            Time = DateTime.Now,
+                            IsFirst = false
+                        });
 
-                            item.Messages.Add(new MessageModel()
-                            {
-                                Username = item.Username,
-                                UsernameColor = item.UsernameColor,
-                                ImageSource = item.ImageSource,
-                                ActiveState = item.ActiveState,
-                                Message = "Hello word! " + (j + 1).ToString(),
-                                Time = DateTime.Now.Date,
-                                IsFirst = false
-                            });
-                            if (j == i * 2 - 1 && i == 2)
-                                item.Messages.Add(new MessageModel()
-                                {
-                                    Username = item.Username,
-                                    UsernameColor = item.UsernameColor,
-                                    ImageSource = item.ImageSource,
-                                    ActiveState = item.ActiveState,
-                                    Message = "Hello word! " + (j + 1).ToString(),
-                                    Time = DateTime.Now.Date,
-                                    ImageLinks = new List<LinkComponentModel>()
-                            {
-                                new LinkComponentModel()
-                                {
-                                    Link="https://samequizy.pl/wp-content/uploads/2016/03/filing_images_3e6948328f17.jpeg"
-                                }
-                            },
-                                    IsFirst = false
-                                });
 
-                        }
+
                     }
 
                 }

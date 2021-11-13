@@ -5,7 +5,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.Background>
+                            <SolidColorBrush x:Name="BackgroundGridColor" Color="Transparent"/>
+                        </Grid.Background>
+                        
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
                         <StackPanel Orientation="Horizontal"
                                 Margin="10,5,10,-3">
@@ -17,7 +22,7 @@
                                 </Ellipse.Fill>
                             </Ellipse>
 
-                            <StackPanel Margin="5,0,0,4" VerticalAlignment="Center">
+                            <StackPanel Margin="5,-5,0,5" VerticalAlignment="Center">
 
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                     <Label Content="{Binding Username}"
@@ -47,6 +52,34 @@
                                   Margin="51,-5,0,1"/>
 
                     </StackPanel>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BackgroundGridColor"
+                                                            Storyboard.TargetProperty="Color"
+                                                            FillBehavior="HoldEnd"
+                                                            Duration="0"
+                                                            To="#32353b"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BackgroundGridColor"
+                                                            Storyboard.TargetProperty="Color"
+                                                            FillBehavior="HoldEnd"
+                                                            Duration="0"
+                                                            To="Transparent"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -56,20 +89,73 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ListViewItem">
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                <Label Content="{Binding Message}"
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.Background>
+                                    <SolidColorBrush x:Name="BackgroundGridColor" Color="Transparent"/>
+                                </Grid.Background>
+
+                                <Label x:Name="TimeLabel"
+                                       Content="{Binding GetShortTime}"
+                                       Foreground="#5f7673"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Margin="11,3,0,0"
+                                       Opacity="0"/>
+
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                    <Label Content="{Binding Message}"
                                    Foreground="#dcddde"
                                    FontSize="15"
                                    FontWeight="Regular"
-                                   Margin="51,-5,0,1"/>
-                                <ListView HorizontalAlignment="Left"
+                                   Margin="51,0,0,1"/>
+                                    
+                                    <ListView HorizontalAlignment="Left"
                                   ItemsSource="{Binding ImageLinks}"
                                   Background="Transparent"
                                   BorderBrush="Transparent"
                                   ItemContainerStyle="{DynamicResource LinkMessageComponent}"
                                   Margin="51,-5,0,1"/>
 
-                            </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="BackgroundGridColor"
+                                                            Storyboard.TargetProperty="Color"
+                                                            FillBehavior="HoldEnd"
+                                                            Duration="0"
+                                                            To="#32353b"/>
+                                            <DoubleAnimation Storyboard.TargetName="TimeLabel"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             FillBehavior="HoldEnd"
+                                                             Duration="0"
+                                                             To="1"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="BackgroundGridColor"
+                                                            Storyboard.TargetProperty="Color"
+                                                            FillBehavior="HoldEnd"
+                                                            Duration="0"
+                                                            To="Transparent"/>
+                                            <DoubleAnimation Storyboard.TargetName="TimeLabel"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             FillBehavior="HoldEnd"
+                                                             Duration="0"
+                                                             To="0"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </ControlTemplate.Triggers>
+                            
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
