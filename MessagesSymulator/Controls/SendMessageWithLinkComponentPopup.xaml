@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="MessagesSymulator.Controls.SendMessageWithLinkComponentPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MessagesSymulator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1600">
+    <Grid>
+
+        <Button x:Name="BackgroundButton" Style="{StaticResource BackgroundButton}"
+                Background="#BF000000"
+                Click="BackgroundButton_Click">
+        </Button>
+
+        <Border HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#36393f"
+                CornerRadius="2">
+
+            <StackPanel>
+                <StackPanel Margin="15">
+
+                    <Border x:Name="ImageElement">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding Link}"/>
+                        </Border.Background>
+                    </Border>
+
+                    <Label x:Name="TitleLabel"
+                           Content="Title"
+                           Foreground="White"
+                           HorizontalAlignment="Left"
+                           FontWeight="Bold"
+                           FontSize="22"
+                           Margin="0,0,0,-10"/>
+                    <Label Content="Prześlij na czacie"
+                           Foreground="#b8babd"
+                           HorizontalAlignment="Left"
+                           FontSize="14"/>
+
+                    <StackPanel>
+                        <StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="-5,0,0,-2">
+                                
+                            <Label Content="DODAJ KOMENTARZ"
+                                   FontWeight="Medium"
+                                   Foreground="White"
+                                   Margin="0,10,0,5"/>
+                            <Label Content="(OPCJONALNIE)"
+                                   FontWeight="Medium"
+                                   Foreground="#b9bbbe"
+                                   Margin="-5,10,0,5"/>
+                            </StackPanel>
+
+                            <TextBox x:Name="NameTextBox"
+                                     Style="{StaticResource MessageBox}"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Border Background="#2f3136" 
+                        CornerRadius="0,0,2,2"
+                        VerticalAlignment="Bottom"
+                        Padding="15">
+                    <StackPanel HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                        <local:TextButton x:Name="SaveButton"
+                                          Content="Gotowe"
+                                          Foreground="White"
+                                          Background="#5865f2"
+                                          MouseOverColor="#4751c4"
+                                          FontWeight="SemiBold"
+                                          FontSize="12"
+                                          Style="{StaticResource DefaultButton}"
+                                          Padding="15,7,15,7"
+                                          Click="SaveButton_Click"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+
+</UserControl>

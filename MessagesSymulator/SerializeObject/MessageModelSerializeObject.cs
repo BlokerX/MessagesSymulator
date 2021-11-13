@@ -9,7 +9,7 @@ namespace MessagesSymulator.SerializeObject
     public class MessageModelSerializeObject : UserInformationsSerializeObject
     {
         public string Message;
-        public List<LinkComponentModelSerializeObject> ImageLinks = new List<LinkComponentModelSerializeObject>();
+        public LinkComponentModelSerializeObject ImageLink = new LinkComponentModelSerializeObject();
         public DateTime Time;
         public bool IsFirst;
 
@@ -19,13 +19,10 @@ namespace MessagesSymulator.SerializeObject
             Message = model.Message;
             Time = model.Time;
             IsFirst = model.IsFirst;
-            foreach (var item in model.ImageLinks)
-            {
-                ImageLinks.Add(new LinkComponentModelSerializeObject(item));
-            }
+            ImageLink = new LinkComponentModelSerializeObject(model.ImageLink);
         }
 
-        public MessageModelSerializeObject(string message, List<LinkComponentModelSerializeObject> imageLinks,
+        public MessageModelSerializeObject(string message, LinkComponentModelSerializeObject imageLink,
             DateTime time, bool isFirst, UserInformationsSerializeObject userInformations) 
             : base(userInformations.Username,
             userInformations.UsernameColor,
@@ -33,7 +30,7 @@ namespace MessagesSymulator.SerializeObject
             userInformations.ActiveState)
         {
             Message = message;
-            ImageLinks = imageLinks;
+            ImageLink = imageLink;
             Time = time;
             IsFirst = isFirst;
         }

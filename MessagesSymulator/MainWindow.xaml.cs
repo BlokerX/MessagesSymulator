@@ -99,7 +99,7 @@ namespace MessagesSymulator
                 "NAZWA UŻYTKOWNIKA");
             enp.Loaded += EditUsernamePopup_Loaded;
             enp.SaveButtonEvent += EditUsernamePopup_SaveButtonEvent;
-            enp.BackgroundClickEvent += EditPopup_BackgroundClickEvent;
+            enp.BackgroundClickEvent += Popup_BackgroundClickEvent;
             MainPanel.Children.Add(enp);
         }
 
@@ -126,7 +126,7 @@ namespace MessagesSymulator
                 "KOLOR NAZWY UŻYTKOWNIKA");
             enp.Loaded += EditUsernameColorPopup_Loaded;
             enp.SaveButtonEvent += EditUsernameColorPopup_SaveButtonEvent;
-            enp.BackgroundClickEvent += EditPopup_BackgroundClickEvent;
+            enp.BackgroundClickEvent += Popup_BackgroundClickEvent;
             MainPanel.Children.Add(enp);
         }
 
@@ -144,17 +144,17 @@ namespace MessagesSymulator
 
         #endregion
 
-        private void EditPopup_BackgroundClickEvent(object sender, RoutedEventArgs e)
-        {
-            var enp = (sender as EditTextPopup);
-            MainPanel.Children.Remove(enp);
-        }
-
         #endregion EditUsernameButton
 
         #endregion MyAccount
 
         #endregion Settings
+
+        private void Popup_BackgroundClickEvent(object sender, RoutedEventArgs e)
+        {
+            var enp = (sender as UIElement);
+            MainPanel.Children.Remove(enp);
+        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -165,10 +165,24 @@ namespace MessagesSymulator
         private void AddLinkButton_Click(object sender, RoutedEventArgs e)
         {
             var fileDialog = new OpenFileDialog();
+            string filePath;
             if ((bool)fileDialog.ShowDialog())
             {
-                var link = fileDialog.FileName;
+                filePath = fileDialog.FileName;
+                var smwp = new SendMessageWithLinkComponentPopup((DataContext as MainViewModel).Message, filePath);
+                smwp.BackgroundClickEvent += Popup_BackgroundClickEvent;
+                smwp.SendButtonEvent += SendMessageWithLinkComponentPopup_SendButtonEvent;
+                MainPanel.Children.Add(smwp);
             }
+        }
+
+        private void SendMessageWithLinkComponentPopup_SendButtonEvent(object sender, SendMessageWithLinkComponentPopupArgs e)
+        {
+            var smwlcp = (sender as SendMessageWithLinkComponentPopup);
+            //(DataContext as MainViewModel).Message = e.MessageText;
+            (DataContext as MainViewModel).MessageLink = e.Link;
+            MainPanel.Children.Remove(smwlcp);
+            (DataContext as MainViewModel).SendCommand.Execute(this);
         }
     }
 }

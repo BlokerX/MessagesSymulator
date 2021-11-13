@@ -29,5 +29,9 @@ namespace MessagesSymulator.Models
             };
         }
 
+        public LinkComponentModel(string link):this()
+        {
+            Link = link;
+        }
     }
 }

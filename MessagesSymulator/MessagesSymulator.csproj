@@ -58,11 +58,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\EditNamePopup.xaml.cs">
-      <DependentUpon>EditNamePopup.xaml</DependentUpon>
+    <Compile Include="Controls\EditTextPopup.xaml.cs">
+      <DependentUpon>EditTextPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PropertiesEditTextBox.xaml.cs">
       <DependentUpon>PropertiesEditTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SendMessageWithLinkComponentPopup.xaml.cs">
+      <DependentUpon>SendMessageWithLinkComponentPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TextButton.xaml.cs">
       <DependentUpon>TextButton.xaml</DependentUpon>
@@ -83,11 +86,15 @@
     <Compile Include="SerializeObject\MessageModelSerializeObject.cs" />
     <Compile Include="SerializeObject\UserInformationsSerializeObject.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Page Include="Controls\EditNamePopup.xaml">
+    <Page Include="Controls\EditTextPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PropertiesEditTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SendMessageWithLinkComponentPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

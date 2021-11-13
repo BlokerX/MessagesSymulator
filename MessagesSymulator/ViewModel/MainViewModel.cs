@@ -23,13 +23,24 @@ namespace MessagesSymulator.ViewModel
         public RelayCommand SendCommand { get; set; }
 
         private string _message;
-
         public string Message
         {
             get { return _message; }
             set
             {
                 _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _messageLink;
+        public string MessageLink
+        {
+            get { return _messageLink; }
+            set
+            {
+                _messageLink = value;
                 OnPropertyChanged();
             }
         }
@@ -41,13 +52,17 @@ namespace MessagesSymulator.ViewModel
             #region CommandsInitialize
             SendCommand = new RelayCommand(o =>
             {
-                if (Message != null && Message != "" &&
-                CharCountInString(Message, ' ') != Message.Length)
+                if ((Message != null && Message != "" &&
+                CharCountInString(Message, ' ') != Message.Length) || MessageLink != null)
                 {
                     if (ActiveUser.SelectedContact.Messages.Last().Username != ActiveUser.Username ||
                         ActiveUser.SelectedContact.Messages.Last().ImageSource != ActiveUser.ImageSource ||
                         ActiveUser.SelectedContact.Messages.Last().UsernameColor != ActiveUser.UsernameColor)
                         ActiveUser.SelectedContact.IsFirstMy = true;
+
+                    LinkComponentModel _imageLink = null;
+                    if (MessageLink != null)
+                        _imageLink = new LinkComponentModel(MessageLink);
 
                     ActiveUser.SelectedContact.Messages.Add(new MessageModel()
                     {
@@ -57,11 +72,13 @@ namespace MessagesSymulator.ViewModel
                         ActiveState = ActiveUser.ActiveState,
                         Message = Message,
                         Time = DateTime.Now,
+                        ImageLink = _imageLink,
                         IsFirst = ActiveUser.SelectedContact.IsFirstMy
                     });
                     ActiveUser.SelectedContact.IsFirstMy = false;
 
                     Message = "";
+                    MessageLink = null;
                 }
             });
             #endregion
@@ -127,12 +144,7 @@ namespace MessagesSymulator.ViewModel
                             ActiveState = item.ActiveState,
                             Message = "Hello world!",
                             Time = DateTime.Now,
-                            ImageLinks = new List<LinkComponentModel>() {
-                            new LinkComponentModel()
-                            {
-                                Link = "http://2.bp.blogspot.com/-zVqfkF3YTqU/VQLhqBLGguI/AAAAAAAAANs/RYu3h4Gu6l4/s1600/slenderman28n-1-web.jpg"
-                            }
-                        },
+                            ImageLink = new LinkComponentModel("http://2.bp.blogspot.com/-zVqfkF3YTqU/VQLhqBLGguI/AAAAAAAAANs/RYu3h4Gu6l4/s1600/slenderman28n-1-web.jpg"),
                             IsFirst = true
                         });
 
@@ -143,12 +155,7 @@ namespace MessagesSymulator.ViewModel
                             ImageSource = item.ImageSource,
                             ActiveState = item.ActiveState,
                             Time = DateTime.Now,
-                            ImageLinks = new List<LinkComponentModel>() {
-                            new LinkComponentModel()
-                            {
-                                Link = "https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"
-                            }
-                        },
+                            ImageLink = new LinkComponentModel("https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"),
                             IsFirst = true
                         });
 
@@ -160,13 +167,7 @@ namespace MessagesSymulator.ViewModel
                             ActiveState = item.ActiveState,
                             Message = "Hello word! " + (1).ToString(),
                             Time = DateTime.Now,
-                            ImageLinks = new List<LinkComponentModel>()
-                                    {
-                                        new LinkComponentModel()
-                                        {
-                                            Link="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-                                        }
-                                    },
+                            ImageLink = new LinkComponentModel("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
                             IsFirst = false
                         });
 
@@ -178,12 +179,7 @@ namespace MessagesSymulator.ViewModel
                             ActiveState = item.ActiveState,
                             Message = "Hello world!",
                             Time = DateTime.Now,
-                            ImageLinks = new List<LinkComponentModel>() {
-                            new LinkComponentModel()
-                            {
-                                Link = "https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"
-                            }
-                        },
+                            ImageLink = new LinkComponentModel("https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"),
                             IsFirst = false
                         });
 
@@ -238,13 +234,7 @@ namespace MessagesSymulator.ViewModel
                             ImageSource = item.ImageSource,
                             ActiveState = item.ActiveState,
                             Time = DateTime.Now,
-                            ImageLinks = new List<LinkComponentModel>()
-                                    {
-                                        new LinkComponentModel()
-                                        {
-                                            Link="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-                                        }
-                                    },
+                            ImageLink = new LinkComponentModel("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
                             IsFirst = false
                         });
 

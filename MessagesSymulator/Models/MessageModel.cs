@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,28 @@ namespace MessagesSymulator.Models
     public class MessageModel : UserInformations
     {
         public string Message { get; set; }
-        public List<LinkComponentModel> ImageLinks { get; set; } = new List<LinkComponentModel>();
+
+        private LinkComponentModel _imageLink = new LinkComponentModel();
+        public LinkComponentModel ImageLink
+        {
+            get { return _imageLink; }
+            set
+            {
+                _imageLink = value;
+
+                ImageLinks.Clear();
+                if (_imageLink?.Link != null)
+                {
+                    ImageLinks.Add(_imageLink);
+                }
+            }
+        }
+
+        public ObservableCollection<LinkComponentModel> ImageLinks { get; set; } = new ObservableCollection<LinkComponentModel>();
         public bool IsFirst { get; set; }
         public DateTime Time { get; set; }
 
-        public string GetShortTime 
+        public string GetShortTime
         {
             get
             {
@@ -33,16 +51,14 @@ namespace MessagesSymulator.Models
             Message = serializeObject.Message;
             Time = serializeObject.Time;
             IsFirst = serializeObject.IsFirst;
-            foreach (var item in serializeObject.ImageLinks)
-            {
-                ImageLinks.Add(new LinkComponentModel(item));
-            }
+            ImageLink = new LinkComponentModel(serializeObject.ImageLink);
+
         }
 
-        public MessageModel(string message, List<LinkComponentModel> imageLinks, DateTime time, bool isFirst)
+        public MessageModel(string message, LinkComponentModel imageLink, DateTime time, bool isFirst)
         {
             Message = message;
-            ImageLinks = imageLinks;
+            ImageLink = imageLink;
             Time = time;
             IsFirst = isFirst;
         }
