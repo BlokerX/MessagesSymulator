@@ -164,12 +164,14 @@ namespace MessagesSymulator
 
         private void AddLinkButton_Click(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new OpenFileDialog();
-            string filePath;
+            var fileDialog = new OpenFileDialog()
+            {
+                Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif"
+             //todo filtrowanie zdjęć + "|All Files|*.*"
+            };
             if ((bool)fileDialog.ShowDialog())
             {
-                filePath = fileDialog.FileName;
-                var smwp = new SendMessageWithLinkComponentPopup((DataContext as MainViewModel).Message, filePath);
+                var smwp = new SendMessageWithLinkComponentPopup((DataContext as MainViewModel).Message, fileDialog.FileName,fileDialog.SafeFileName);
                 smwp.BackgroundClickEvent += Popup_BackgroundClickEvent;
                 smwp.SendButtonEvent += SendMessageWithLinkComponentPopup_SendButtonEvent;
                 MainPanel.Children.Add(smwp);

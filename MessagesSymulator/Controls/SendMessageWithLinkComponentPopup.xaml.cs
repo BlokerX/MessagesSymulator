@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -13,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MessagesSymulator.Controls
 {
@@ -47,6 +47,17 @@ namespace MessagesSymulator.Controls
             }
         }
 
+        private string _imageName;
+        public string ImageName
+        {
+            get { return _imageName; }
+            set
+            {
+                _imageName = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         public SendMessageWithLinkComponentPopup()
@@ -54,20 +65,54 @@ namespace MessagesSymulator.Controls
             InitializeComponent();
 
             // Scaling Method!
-            ImageElement.Width = System.Windows.SystemParameters.PrimaryScreenWidth / 9;
-            ImageElement.Height = System.Windows.SystemParameters.PrimaryScreenHeight / 9;
+            ImageElement.Width = System.Windows.SystemParameters.PrimaryScreenWidth / 10;
+            ImageElement.Height = System.Windows.SystemParameters.PrimaryScreenHeight / 10;
         }
 
-        public SendMessageWithLinkComponentPopup(string messageText, string link) : this()
+        public SendMessageWithLinkComponentPopup(string messageText, string link, string imageName) : this()
         {
             MessageText = messageText;
             Link = link;
+            ImageName = imageName;
         }
 
         public event EventHandler<SendMessageWithLinkComponentPopupArgs> SendButtonEvent;
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            SendButtonEvent?.Invoke(this, new SendMessageWithLinkComponentPopupArgs(MessageText, Link));
+            var saveDirePath = Path.Combine(Directory.GetCurrentDirectory(), "LinkedImages");
+
+            if (!Directory.Exists(saveDirePath))
+                Directory.CreateDirectory(saveDirePath);
+
+            string newLink = "";
+
+            newLink = Path.Combine(saveDirePath, ImageName);
+
+            var last = ImageName.LastIndexOfAny(new char[1] { '.' });
+            string fileExt = "";
+            if(last > 0)
+            for (int j = last; j < ImageName.Length; j++)
+            {
+                fileExt += ImageName[j];
+            }
+            if (last == -1)
+                last = ImageName.Length;
+            string nameWithoutExt = "";
+            for (int j = 0; j < last; j++)
+            {
+                nameWithoutExt += ImageName[j];
+            }
+
+            int i = 0;
+            while (File.Exists(newLink) && newLink?.ToString() != "")
+            {
+
+                newLink = Path.Combine(saveDirePath, nameWithoutExt + "_" + (++i).ToString() + fileExt);
+            }
+
+
+            File.Copy(Link, newLink);
+            SendButtonEvent?.Invoke(this, new SendMessageWithLinkComponentPopupArgs(MessageText, newLink));
         }
 
         public event RoutedEventHandler BackgroundClickEvent;
@@ -88,6 +133,12 @@ namespace MessagesSymulator.Controls
 
         #endregion
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri(Link));
+            ImageElement.Background = imageBrush;
+        }
     }
 
     public class SendMessageWithLinkComponentPopupArgs
