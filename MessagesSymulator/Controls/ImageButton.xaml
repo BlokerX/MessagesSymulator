@@ -8,12 +8,3 @@
              d:DesignHeight="450" d:DesignWidth="800"
              MouseEnter="Button_MouseEnter"
              MouseLeave="Button_MouseLeave"
-             MouseLeftButtonDown="Button_Click"
-             Loaded="UserControl_Loaded">
-    <Border Name="BorderImage" CornerRadius="3">
-        <Grid>
-            <Image x:Name="ButtonImage" VerticalAlignment="Center" HorizontalAlignment="Center"
-                    RenderOptions.BitmapScalingMode="HighQuality"/>
-        </Grid>
-    </Border>
-</UserControl>
