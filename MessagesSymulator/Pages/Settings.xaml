@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MessagesSymulator.Pages"
+             xmlns:local="clr-namespace:MessagesSymulator.Pages" xmlns:controls="clr-namespace:MessagesSymulator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1200">
     <Grid>
@@ -57,15 +57,16 @@
 
                 <local:Settings_MyAccount x:Name="Settings_MyAccount_Page"/>
 
-                <Button x:Name="BackToTheMenuButton" 
-                        Width="60" Height="60" Content="X"
+                <controls:ImageButton x:Name="BackToTheMenuButton"
+                        Width="35" Height="35"
+                        ImageSourceNormalState="{StaticResource Esc_Normal}"
+                        ImageSourceMouseOver="{StaticResource Esc_Hover}"
+                        ImageSourceClick="{StaticResource Esc_Click}"
                         Margin="20"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        Padding="10,0,10,0"
                         Foreground="DarkGray"
-                        FontSize="25"
-                        Style="{StaticResource DefaultButton}"/>
+                        FontSize="25"/>
 
             </Grid>
 

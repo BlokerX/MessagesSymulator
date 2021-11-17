@@ -262,7 +262,7 @@
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
-                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="140"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBox Grid.ColumnSpan="2"
@@ -271,19 +271,20 @@
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
 
-                            <Button Content="Add Link"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Width="70"
-                                    Height="50"
-                                    BorderThickness="0"
-                                    Style="{StaticResource DefaultButton}"
-                                    Click="AddLinkButton_Click"
-                                    Margin="10,0,10,0">
+                            <controls:ImageButton ImageSourceMouseOver="{StaticResource AddImage_Hover}"
+                                ImageSourceNormalState="{StaticResource AddImage_Normal}"
+                                ImageSourceClick="{StaticResource AddImage_Click}"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Width="25"
+                                Height="25"
+                                BorderThickness="0"
+                                Click="AddLinkButton_Click"
+                                Margin="20,0,10,0">
                                 <!--Button.Background>
                             <ImageBrush ImageSource=""/>
                         </Button.Background-->
-                            </Button>
+                            </controls:ImageButton>
 
                             <Button Content="Send"
                                     VerticalAlignment="Center"

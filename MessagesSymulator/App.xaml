@@ -5,7 +5,9 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Resources/ResourcesDictonary.xaml"/>
                 <ResourceDictionary Source="./Themes/ContactCard.xaml"/>
                 <ResourceDictionary Source="./Themes/ChatItem.xaml"/>
                 <ResourceDictionary Source="./Themes/MessageBox.xaml"/>
@@ -15,6 +17,7 @@
                 <ResourceDictionary Source="./Themes/DefaultButton.xaml"/>
                 <ResourceDictionary Source="./Themes/BackgroundButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

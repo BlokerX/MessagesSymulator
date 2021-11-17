@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="AddImage_Normal" UriSource="/Resources/AddImagePictures/AddImage_Normal.png"/>
+    <BitmapImage x:Key="AddImage_Hover" UriSource="/Resources/AddImagePictures/AddImage_Hover.png"/>
+    <BitmapImage x:Key="AddImage_Click" UriSource="/Resources/AddImagePictures/AddImage_Click.png"/>
+
+    <BitmapImage x:Key="Esc_Normal" UriSource="/Resources/EscImagePictures/Esc_Normal.png"/>
+    <BitmapImage x:Key="Esc_Hover" UriSource="/Resources/EscImagePictures/Esc_Hover.png"/>
+    <BitmapImage x:Key="Esc_Click" UriSource="/Resources/EscImagePictures/Esc_Click.png"/>
+</ResourceDictionary>
