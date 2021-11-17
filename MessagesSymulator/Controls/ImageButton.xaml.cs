@@ -52,9 +52,12 @@ namespace MessagesSymulator.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ButtonImage.Source = ImageSourceClick;
             Click?.Invoke(sender, e);
-            //ButtonImage.Source = this?.ImageSourceNormalState.Source;
+        }
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ButtonImage.Source = ImageSourceClick;
         }
     }
 }
