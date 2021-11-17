@@ -14,6 +14,7 @@
                                 Background="{TemplateBinding Background}"
                                 Padding="{TemplateBinding Padding}">
                             <Grid>
+                                
                                 <TextBlock Text="{TemplateBinding Content}"
                                        TextWrapping="Wrap"
                                        Foreground="{TemplateBinding Foreground}"
@@ -23,6 +24,11 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Background="Transparent"/>
+
+                                <Image Source="{Binding ButtonImage}"
+                                       VerticalAlignment="Stretch"
+                                       HorizontalAlignment="Stretch"/>
+                                
                             </Grid>
                         </Border>
                     </Border>

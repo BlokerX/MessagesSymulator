@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -60,6 +61,9 @@
     </ApplicationDefinition>
     <Compile Include="Controls\EditTextPopup.xaml.cs">
       <DependentUpon>EditTextPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImageButton.xaml.cs">
+      <DependentUpon>ImageButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PropertiesEditTextBox.xaml.cs">
       <DependentUpon>PropertiesEditTextBox.xaml</DependentUpon>
@@ -87,6 +91,10 @@
     <Compile Include="SerializeObject\UserInformationsSerializeObject.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Controls\EditTextPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ImageButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,6 +205,9 @@
     <Folder Include="_Dokumentacja\DomyślnyMotywAplikacji\DzwiękiDlaDomyślnegoMotywuAplikacji\" />
     <Folder Include="_Dokumentacja\DomyślnyMotywAplikacji\GrafikaDlaDomyślnegoMotywuAplikacji\" />
     <Folder Include="_Dokumentacja\IkonaAplikacji\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add-C.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

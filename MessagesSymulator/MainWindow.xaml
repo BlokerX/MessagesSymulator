@@ -271,19 +271,19 @@
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
 
-                            <Button Content="Add Link"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Width="70"
-                                    Height="50"
-                                    BorderThickness="0"
-                                    Style="{StaticResource DefaultButton}"
-                                    Click="AddLinkButton_Click"
-                                    Margin="10,0,10,0">
+                            <controls:ImageButton Content="Add Link"
+                                                  
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"
+                                                  Width="70"
+                                                  Height="50"
+                                                  BorderThickness="0"
+                                                  Click="AddLinkButton_Click"
+                                                  Margin="10,0,10,0">
                                 <!--Button.Background>
                             <ImageBrush ImageSource=""/>
                         </Button.Background-->
-                            </Button>
+                            </controls:ImageButton>
 
                             <Button Content="Send"
                                     VerticalAlignment="Center"

@@ -68,6 +68,41 @@ namespace MessagesSymulator
 
         #endregion
 
+        #region SendLinkedMessage
+
+        private void AddLinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            var fileDialog = new OpenFileDialog()
+            {
+                Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif"
+             //todo filtrowanie zdjęć + "|All Files|*.*"
+            };
+            if ((bool)fileDialog.ShowDialog())
+            {
+                var smwp = new SendMessageWithLinkComponentPopup((DataContext as MainViewModel).Message, fileDialog.FileName,fileDialog.SafeFileName);
+                smwp.BackgroundClickEvent += Popup_BackgroundClickEvent;
+                smwp.SendButtonEvent += SendMessageWithLinkComponentPopup_SendButtonEvent;
+                MainPanel.Children.Add(smwp);
+            }
+        }
+
+        private void SendMessageWithLinkComponentPopup_SendButtonEvent(object sender, SendMessageWithLinkComponentPopupArgs e)
+        {
+            var smwlcp = (sender as SendMessageWithLinkComponentPopup);
+            //(DataContext as MainViewModel).Message = e.MessageText;
+            (DataContext as MainViewModel).MessageLink = e.Link;
+            MainPanel.Children.Remove(smwlcp);
+            (DataContext as MainViewModel).SendCommand.Execute(this);
+        }
+
+        private void Popup_BackgroundClickEvent(object sender, RoutedEventArgs e)
+        {
+            var enp = (sender as UIElement);
+            MainPanel.Children.Remove(enp);
+        }
+
+        #endregion
+
         #region Settings
 
         #region Settings Open/Close
@@ -150,41 +185,10 @@ namespace MessagesSymulator
 
         #endregion Settings
 
-        private void Popup_BackgroundClickEvent(object sender, RoutedEventArgs e)
-        {
-            var enp = (sender as UIElement);
-            MainPanel.Children.Remove(enp);
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var mvm = (DataContext as MainViewModel);
             mvm.SaveUserData();
-        }
-
-        private void AddLinkButton_Click(object sender, RoutedEventArgs e)
-        {
-            var fileDialog = new OpenFileDialog()
-            {
-                Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif"
-             //todo filtrowanie zdjęć + "|All Files|*.*"
-            };
-            if ((bool)fileDialog.ShowDialog())
-            {
-                var smwp = new SendMessageWithLinkComponentPopup((DataContext as MainViewModel).Message, fileDialog.FileName,fileDialog.SafeFileName);
-                smwp.BackgroundClickEvent += Popup_BackgroundClickEvent;
-                smwp.SendButtonEvent += SendMessageWithLinkComponentPopup_SendButtonEvent;
-                MainPanel.Children.Add(smwp);
-            }
-        }
-
-        private void SendMessageWithLinkComponentPopup_SendButtonEvent(object sender, SendMessageWithLinkComponentPopupArgs e)
-        {
-            var smwlcp = (sender as SendMessageWithLinkComponentPopup);
-            //(DataContext as MainViewModel).Message = e.MessageText;
-            (DataContext as MainViewModel).MessageLink = e.Link;
-            MainPanel.Children.Remove(smwlcp);
-            (DataContext as MainViewModel).SendCommand.Execute(this);
         }
     }
 }
