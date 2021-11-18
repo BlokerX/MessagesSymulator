@@ -1,10 +1,40 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <BitmapImage x:Key="AddImage_Normal" UriSource="/Resources/AddImagePictures/AddImage_Normal.png"/>
-    <BitmapImage x:Key="AddImage_Hover" UriSource="/Resources/AddImagePictures/AddImage_Hover.png"/>
-    <BitmapImage x:Key="AddImage_Click" UriSource="/Resources/AddImagePictures/AddImage_Click.png"/>
 
-    <BitmapImage x:Key="Esc_Normal" UriSource="/Resources/EscImagePictures/Esc_Normal.png"/>
-    <BitmapImage x:Key="Esc_Hover" UriSource="/Resources/EscImagePictures/Esc_Hover.png"/>
-    <BitmapImage x:Key="Esc_Click" UriSource="/Resources/EscImagePictures/Esc_Click.png"/>
+    <BitmapImage x:Key="AddContact_Normal" UriSource="/Resources/AddContact/AddContact_Normal.png"/>
+    <BitmapImage x:Key="AddContact_Hover" UriSource="/Resources/AddContact/AddContact_Hover.png"/>
+    <BitmapImage x:Key="AddContact_Click" UriSource="/Resources/AddContact/AddContact_Click.png"/>
+    
+    <BitmapImage x:Key="AddImage_Normal" UriSource="/Resources/AddImage/AddImage_Normal.png"/>
+    <BitmapImage x:Key="AddImage_Hover" UriSource="/Resources/AddImage/AddImage_Hover.png"/>
+    <BitmapImage x:Key="AddImage_Click" UriSource="/Resources/AddImage/AddImage_Click.png"/>
+
+    <BitmapImage x:Key="Call_Normal" UriSource="/Resources/Call/Call_Normal.png"/>
+    <BitmapImage x:Key="Call_Hover" UriSource="/Resources/Call/Call_Hover.png"/>
+    <BitmapImage x:Key="Call_Click" UriSource="/Resources/Call/Call_Click.png"/>
+
+    <BitmapImage x:Key="Camera_Normal" UriSource="/Resources/Camera/Camera_Normal.png"/>
+    <BitmapImage x:Key="Camera_Hover" UriSource="/Resources/Camera/Camera_Hover.png"/>
+    <BitmapImage x:Key="Camera_Click" UriSource="/Resources/Camera/Camera_Click.png"/>
+    
+    <BitmapImage x:Key="Esc_Normal" UriSource="/Resources/Esc/Esc_Normal.png"/>
+    <BitmapImage x:Key="Esc_Hover" UriSource="/Resources/Esc/Esc_Hover.png"/>
+    <BitmapImage x:Key="Esc_Click" UriSource="/Resources/Esc/Esc_Click.png"/>
+
+    <BitmapImage x:Key="Pencil_Normal" UriSource="/Resources/Pencil/Pencil_Normal.png"/>
+    <BitmapImage x:Key="Pencil_Hover" UriSource="/Resources/Pencil/Pencil_Hover.png"/>
+    <BitmapImage x:Key="Pencil_Click" UriSource="/Resources/Pencil/Pencil_Click.png"/>
+    
+    <BitmapImage x:Key="Pin_Normal" UriSource="/Resources/Pin/Pin_Normal.png"/>
+    <BitmapImage x:Key="Pin_Hover" UriSource="/Resources/Pin/Pin_Hover.png"/>
+    <BitmapImage x:Key="Pin_Click" UriSource="/Resources/Pin/Pin_Click.png"/>
+    
+    <BitmapImage x:Key="Send_Normal" UriSource="/Resources/Send/Send_Normal.png"/>
+    <BitmapImage x:Key="Send_Hover" UriSource="/Resources/Send/Send_Hover.png"/>
+    <BitmapImage x:Key="Send_Click" UriSource="/Resources/Send/Send_Click.png"/>
+    
+    <BitmapImage x:Key="Trash_Normal" UriSource="/Resources/Trash/Trash_Normal.png"/>
+    <BitmapImage x:Key="Trash_Hover" UriSource="/Resources/Trash/Trash_Hover.png"/>
+    <BitmapImage x:Key="Trash_Click" UriSource="/Resources/Trash/Trash_Click.png"/>
+    
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MessagesSymulator.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -20,15 +22,13 @@ namespace MessagesSymulator.Controls
     /// <summary>
     /// Logika interakcji dla klasy ImageButton.xaml
     /// </summary>
-    public partial class ImageButton : UserControl
+    public partial class ImageButton : ButtonBase
     {
 
         public Thickness ContainPadding { get; set; }
         public ImageSource ImageSourceNormalState { get; set; }
         public ImageSource ImageSourceMouseOver { get; set; }
         public ImageSource ImageSourceClick { get; set; }
-
-        public event RoutedEventHandler Click;
 
         public ImageButton()
         {
@@ -50,14 +50,14 @@ namespace MessagesSymulator.Controls
             ButtonImage.Source = ImageSourceNormalState;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Click?.Invoke(sender, e);
-        }
-
-        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Button_PreviewClick(object sender, RoutedEventArgs e)
         {
             ButtonImage.Source = ImageSourceClick;
+        }
+
+        private void Button_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ButtonImage.Source = ImageSourceMouseOver;
         }
     }
 }

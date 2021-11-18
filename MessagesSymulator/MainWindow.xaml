@@ -215,27 +215,23 @@
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
 
-                        <Button Content="NP" Width="35" Height="35"
-                            BorderThickness="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource DefaultButton}"
-                            Margin="5,0,5,0">
-                            <!--Button.Background>
-                            <ImageBrush ImageSource=""/>
-                        </Button.Background-->
-                        </Button>
+                        <controls:ImageButton ImageSourceNormalState="{StaticResource Call_Normal}"
+                                              ImageSourceMouseOver="{StaticResource Call_Hover}"
+                                              ImageSourceClick="{StaticResource Call_Click}"
+                                              Width="30" Height="30"
+                                              BorderThickness="0"
+                                              VerticalAlignment="Center"
+                                              Margin="5,0,5,0"/>
 
-                        <Button Content="CP" Width="35" Height="35"
-                            BorderThickness="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource DefaultButton}"
-                            Margin="5,0,5,0">
-                            <!--Button.Background>
-                            <ImageBrush ImageSource=""/>
-                        </Button.Background-->
-                        </Button>
+                        <controls:ImageButton Width="30" Height="30"
+                                              ImageSourceNormalState="{StaticResource Camera_Normal}"
+                                              ImageSourceMouseOver="{StaticResource Camera_Hover}"
+                                              ImageSourceClick="{StaticResource Camera_Click}"
+                                              BorderThickness="0"
+                                              VerticalAlignment="Center"
+                                              Margin="5,0,5,0"/>
 
-                        <Button Content="HELP" Width="35" Height="35"
+                        <Button Content="HELP" Width="30" Height="30"
                             BorderThickness="0"
                             VerticalAlignment="Center"
                             Style="{StaticResource DefaultButton}"
@@ -280,24 +276,16 @@
                                 Height="25"
                                 BorderThickness="0"
                                 Click="AddLinkButton_Click"
-                                Margin="20,0,10,0">
-                                <!--Button.Background>
-                            <ImageBrush ImageSource=""/>
-                        </Button.Background-->
-                            </controls:ImageButton>
+                                Margin="20,0,10,0"/>
 
-                            <Button Content="Send"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Width="70"
-                                    Height="50"
-                                    BorderThickness="0"
-                                    Style="{StaticResource DefaultButton}"
-                                    Command="{Binding SendCommand}">
-                                <!--Button.Background>
-                            <ImageBrush ImageSource=""/>
-                        </Button.Background-->
-                            </Button>
+                            <controls:ImageButton Width="70" Height="50"
+                                                  ImageSourceNormalState="{StaticResource Send_Normal}"
+                                                  ImageSourceMouseOver="{StaticResource Send_Hover}"
+                                                  ImageSourceClick="{StaticResource Send_Click}"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"
+                                                  BorderThickness="0"
+                                                  Command="{Binding SendCommand}"/>
 
                         </StackPanel>
 

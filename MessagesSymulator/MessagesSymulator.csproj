@@ -211,22 +211,57 @@
     <Folder Include="_Dokumentacja\IkonaAplikacji\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\AddImagePictures\AddImage_Normal.png" />
+    <Resource Include="Resources\AddImage\AddImage_Normal.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\AddImagePictures\AddImage_Click.png" />
+    <Resource Include="Resources\AddImage\AddImage_Click.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\AddImagePictures\AddImage_Hover.png" />
+    <Resource Include="Resources\AddImage\AddImage_Hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\EscImagePictures\Esc_Click.png" />
+    <Resource Include="Resources\Esc\Esc_Click.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\EscImagePictures\Esc_Hover.png" />
+    <Resource Include="Resources\Esc\Esc_Hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\EscImagePictures\Esc_Normal.png" />
+    <Resource Include="Resources\Esc\Esc_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Trash\Trash_Click.png" />
+    <Resource Include="Resources\Trash\Trash_Hover.png" />
+    <Resource Include="Resources\Trash\Trash_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Send\Send_Click.png" />
+    <Resource Include="Resources\Send\Send_Hover.png" />
+    <Resource Include="Resources\Send\Send_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pencil\Pencil_Click.png" />
+    <Resource Include="Resources\Pencil\Pencil_Hover.png" />
+    <Resource Include="Resources\Pencil\Pencil_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pin\Pin_Click.png" />
+    <Resource Include="Resources\Pin\Pin_Hover.png" />
+    <Resource Include="Resources\Pin\Pin_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Call\Call_Click.png" />
+    <Resource Include="Resources\Call\Call_Hover.png" />
+    <Resource Include="Resources\Call\Call_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Camera\Camera_Click.png" />
+    <Resource Include="Resources\Camera\Camera_Hover.png" />
+    <Resource Include="Resources\Camera\Camera_Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddContact\AddContact_Click.png" />
+    <Resource Include="Resources\AddContact\AddContact_Hover.png" />
+    <Resource Include="Resources\AddContact\AddContact_Normal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

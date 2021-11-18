@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace MessagesSymulator.Core
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         private Action<object> execute { get; set; }
         private Func<object, bool> canExecute { get; set; }
