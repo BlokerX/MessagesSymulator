@@ -13,6 +13,8 @@ namespace MessagesSymulator.Models
         public ObservableCollection<ContactModel> Contacts { get; set; } = new ObservableCollection<ContactModel>();
         //public ContactModel SelectedContact { get; set; }
 
+        public List<int> ContactsCanels { get; set; } = new List<int>();
+
         private ContactModel _selectedContact;
 
         public ContactModel SelectedContact
@@ -35,9 +37,14 @@ namespace MessagesSymulator.Models
             {
                 Contacts.Add(new ContactModel(item));
             }
-            if(Contacts.Count > serializeObject.SelectedContactIndex)
+            if(Contacts.Count > serializeObject.SelectedContactIndex && serializeObject.SelectedContactIndex>=0)
             SelectedContact = Contacts[serializeObject.SelectedContactIndex];
+            ContactsCanels = serializeObject.ContactsCanels;
+        }
 
+        public static ref ChatUserModel GetChatUserModel(ref ChatUserModel chatUserModel)
+        {
+            return ref chatUserModel;
         }
 
         public ChatUserModel()
@@ -52,11 +59,9 @@ namespace MessagesSymulator.Models
                 SelectedContact = Contacts.First();
         }
 
-        public ChatUserModel(UserInformations myInformations, ObservableCollection<ContactModel> contacts)
+        public ChatUserModel(UserInformations myInformations, ObservableCollection<ContactModel> contacts) 
+            : base(myInformations.ID, myInformations.Username, myInformations.UsernameColor, myInformations.ImageSource, myInformations.ActiveState)
         {
-            Username = myInformations.Username;
-            UsernameColor = myInformations.UsernameColor;
-            ImageSource = myInformations.ImageSource;
             Contacts = contacts;
         }
 

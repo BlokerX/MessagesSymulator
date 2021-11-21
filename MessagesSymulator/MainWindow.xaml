@@ -197,7 +197,7 @@
 
                     <StackPanel Orientation="Horizontal">
 
-                        <Label Content="{Binding ActiveUser.SelectedContact.Username}"
+                        <Label Content="{Binding ActiveUser.SelectedContact.InformationsAboutUser.Username}"
                        VerticalAlignment="Center"
                        Foreground="#fffff9"
                        FontWeight="Bold"
@@ -220,6 +220,7 @@
                                               ImageSourceClick="{StaticResource Call_Click}"
                                               Width="30" Height="30"
                                               BorderThickness="0"
+                                              Click="ImageButton_Click"
                                               VerticalAlignment="Center"
                                               Margin="5,0,5,0"/>
 
@@ -229,7 +230,7 @@
                                               ImageSourceClick="{StaticResource Camera_Click}"
                                               BorderThickness="0"
                                               VerticalAlignment="Center"
-                                              Margin="5,0,5,0"/>
+                                              Margin="5,0,5,0" Click="ImageButton_Click_1"/>
 
                         <Button Content="HELP" Width="30" Height="30"
                             BorderThickness="0"

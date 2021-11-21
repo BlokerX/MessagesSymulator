@@ -15,9 +15,34 @@ namespace MessagesSymulator.ViewModel
 {
     class MainViewModel : ObservableObject
     {
-        public List<ChatUserModel> UsersList { get; set; } = new List<ChatUserModel>();
+        public List<ChatUserModel> UsersList = new List<ChatUserModel>();
 
-        public ChatUserModel ActiveUser { get; set; }
+        public List<MessageCanelModel> MessagesCanelList { get; set; } = new List<MessageCanelModel>();
+
+        public int FindMessagesCanelIndexForID(int id)
+        {
+            for (int i = 0; i < MessagesCanelList.Count; i++)
+            {
+                if (MessagesCanelList[i].ID == id)
+                    return i;
+            }
+            return -1;
+        }
+
+        private ChatUserModel _activeUser { get; set; }
+
+        public ChatUserModel ActiveUser
+        {
+            get
+            {
+                return _activeUser;
+            }
+            set
+            {
+                _activeUser = value;
+                OnPropertyChanged();
+            }
+        }
 
         // Commands
         public RelayCommand SendCommand { get; set; }
@@ -45,19 +70,22 @@ namespace MessagesSymulator.ViewModel
             }
         }
 
+        public bool IsMessageGood { get; set; }
+
         public MainViewModel()
         {
+            IsMessageGood = true;
             ActiveUser = new ChatUserModel();
 
             #region CommandsInitialize
             SendCommand = new RelayCommand(o =>
             {
-                if ((Message != null && Message != "" &&
-                CharCountInString(Message, ' ') != Message.Length) || MessageLink != null)
+                if (IsMessageGood && ((Message != null && Message != "" &&
+                CharCountInString(Message, ' ') != Message.Length) || MessageLink != null))
                 {
-                    if (ActiveUser.SelectedContact.Messages.Last().Username != ActiveUser.Username ||
-                        ActiveUser.SelectedContact.Messages.Last().ImageSource != ActiveUser.ImageSource ||
-                        ActiveUser.SelectedContact.Messages.Last().UsernameColor != ActiveUser.UsernameColor)
+                    if (ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.Username != ActiveUser.Username ||
+                        ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.ImageSource != ActiveUser.ImageSource ||
+                        ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.UsernameColor != ActiveUser.UsernameColor)
                         ActiveUser.SelectedContact.IsFirstMy = true;
 
                     LinkComponentModel _imageLink = null;
@@ -66,10 +94,14 @@ namespace MessagesSymulator.ViewModel
 
                     ActiveUser.SelectedContact.Messages.Add(new MessageModel()
                     {
-                        Username = ActiveUser.Username,
-                        UsernameColor = ActiveUser.UsernameColor,
-                        ImageSource = ActiveUser.ImageSource,
-                        ActiveState = ActiveUser.ActiveState,
+                        InformationsAboutUser = new UserInformations
+                        (
+                            ActiveUser.ID,
+                            ActiveUser.Username,
+                            ActiveUser.UsernameColor,
+                            ActiveUser.ImageSource,
+                            ActiveUser.ActiveState
+                        ),
                         Message = Message,
                         Time = DateTime.Now,
                         ImageLink = _imageLink,
@@ -87,27 +119,43 @@ namespace MessagesSymulator.ViewModel
                 DownloadUserDataFromFile();
             else
             {
+
+                #region MessagesCanelList
+
+                MessagesCanelList.Add(new MessageCanelModel()
+                {
+                    Messages = new ObservableCollection<MessageModel>()
+                });
+
+                #endregion
+
                 #region AddUsers
 
-                ActiveUser.Contacts.Add(new ContactModel()
+                UsersList.Add(new ChatUserModel()
                 {
-
                     Username = "Orion Łukasik",
                     UsernameColor = "Cyan",
                     ImageSource = "https://uwalls.pl/gallery/53/31493_thumb_b1000.jpg",
-                    Messages = new ObservableCollection<MessageModel>()
-
+                    ActiveState = true,
+                    ContactsCanels = new List<int> { 1 }
                 });
 
-                ActiveUser.Contacts.Add(new ContactModel()
+                UsersList.Add(new ChatUserModel()
                 {
-                    Username = "Wiktor Anek",
-                    UsernameColor = "Yellow",
-                    ImageSource = "https://img.pixers.pics/pho_wat(s3:700/FO/15/21/75/12/700_FO15217512_4b773ae21b5736fcabf808cc201e840a.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/plakaty-fire-letter-d.jpg.jpg",
-                    Messages = new ObservableCollection<MessageModel>()
-
+                    Username = "Adam Bogusz",
+                    UsernameColor = "Brown",
+                    ImageSource = "https://i.ytimg.com/vi/na6k3AXRyrQ/hq720.jpg",
+                    ActiveState = true,
+                    ContactsCanels = new List<int> { 1 }
                 });
 
+                #endregion
+
+
+                #region AddContacts
+                AddContacts();
+
+                #region comments
                 //ActiveUser.Contacts.Add(new ContactModel()
                 //{
                 //    Username = "Belle Delphina",
@@ -125,194 +173,181 @@ namespace MessagesSymulator.ViewModel
                 //    Messages = new ObservableCollection<MessageModel>()
 
                 //});
+                #endregion
 
                 #endregion
 
                 #region AddMessages
 
-                for (int i = 1; i <= 1; i++)
+                foreach (var item in MessagesCanelList)
                 {
 
-                    foreach (var item in ActiveUser.Contacts)
+                    item.Messages.Add(new MessageModel()
                     {
+                        InformationsAboutUser = UsersList.First(),
+                        //ActiveState = item.ActiveState,//todo usunąć active state z wiadomości
+                        Message = "Hello world!",
+                        Time = DateTime.Now,
+                        ImageLink = new LinkComponentModel("http://2.bp.blogspot.com/-zVqfkF3YTqU/VQLhqBLGguI/AAAAAAAAANs/RYu3h4Gu6l4/s1600/slenderman28n-1-web.jpg"),
+                        IsFirst = true
+                    });
+                }
 
-                        item.Messages.Add(new MessageModel()
+
+                #endregion
+
+                ActiveUser = UsersList.First();
+
+            }
+
+            ActiveUser.SelectedContact = ActiveUser.Contacts.First();
+            SaveUserData();
+        }
+
+        private void AddContacts()
+        {
+            foreach (var messageCanel in MessagesCanelList)
+            {
+                foreach (var user in UsersList)
+                {
+
+                    if (user.ContactsCanels.Contains(messageCanel.ID))
+                    {
+                        user.Contacts.Clear();
+                        foreach (var contactUser in UsersList)
                         {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello world!",
-                            Time = DateTime.Now,
-                            ImageLink = new LinkComponentModel("http://2.bp.blogspot.com/-zVqfkF3YTqU/VQLhqBLGguI/AAAAAAAAANs/RYu3h4Gu6l4/s1600/slenderman28n-1-web.jpg"),
-                            IsFirst = true
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Time = DateTime.Now,
-                            ImageLink = new LinkComponentModel("https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"),
-                            IsFirst = true
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello word! " + (1).ToString(),
-                            Time = DateTime.Now,
-                            ImageLink = new LinkComponentModel("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
-                            IsFirst = false
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello world!",
-                            Time = DateTime.Now,
-                            ImageLink = new LinkComponentModel("https://th.bing.com/th/id/R.e51c97a2235d2df87219ce42e35788f1?rik=Q%2fMlW5XwnyaAYA&riu=http%3a%2f%2f1.bp.blogspot.com%2f_dFeSIoIIWWc%2fS8GNBv6nJQI%2fAAAAAAAAAAM%2f8a7hzaUiU7E%2fs1600%2fscrollbar1.JPG&ehk=cYL%2bSBLK6fbFIa3%2bSvyJNgCx7DOV6Q7rHKzhh7EPDUY%3d&risl=&pid=ImgRaw&r=0"),
-                            IsFirst = false
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello word! " + (1).ToString(),
-                            Time = DateTime.Now,
-                            IsFirst = false
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello word! " + (1).ToString(),
-                            Time = DateTime.Now,
-                            IsFirst = false
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello word! " + (1).ToString(),
-                            Time = DateTime.Now,
-                            IsFirst = false
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello word! " + (1).ToString(),
-                            Time = DateTime.Now,
-                            IsFirst = false
-                        });
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Time = DateTime.Now,
-                            ImageLink = new LinkComponentModel("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"),
-                            IsFirst = false
-                        });
-
-                        for (int j = 0; j < i * 2; j++)
-                        {
-
-                            item.Messages.Add(new MessageModel()
+                            if (contactUser.ContactsCanels.Contains(messageCanel.ID) && contactUser != user)
                             {
-                                Username = item.Username,
-                                UsernameColor = item.UsernameColor,
-                                ImageSource = item.ImageSource,
-                                ActiveState = item.ActiveState,
-                                Message = "Hello word! " + (j + 1).ToString(),
-                                Time = DateTime.Now,
-                                IsFirst = false
-                            });
-
+                                user.Contacts.Add(new ContactModel(ref messageCanel.Messages, true)
+                                {
+                                    InformationsAboutUser = contactUser
+                                });
+                            }
                         }
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello world!",
-                            Time = DateTime.Now,
-                            IsFirst = true
-                        });
-
-
-
-                        item.Messages.Add(new MessageModel()
-                        {
-                            Username = item.Username,
-                            UsernameColor = item.UsernameColor,
-                            ImageSource = item.ImageSource,
-                            ActiveState = item.ActiveState,
-                            Message = "Hello word! " + (1).ToString(),
-                            Time = DateTime.Now,
-                            IsFirst = false
-                        });
-
-
-
                     }
 
                 }
-                #endregion
-
-                ActiveUser.SelectedContact = ActiveUser.Contacts.First();
-                SaveUserData();
             }
-
         }
+
+
 
         #region Serializacja
 
-        private readonly string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "UserData");
+        //private readonly string UsersDataSavePath = Path.Combine(Directory.GetCurrentDirectory(), "UsersData");
+        //private readonly string MessgesCanellsSavePath = Path.Combine(Directory.GetCurrentDirectory(), "MessagesCanells");
+
+        private readonly string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "MS_Data.json");
 
         public void SaveUserData()
         {
             if (File.Exists(SavePath))
                 File.Delete(SavePath);
 
+            List<SerializeObject.ChatUserModelSerializeObject> chatUserModelSerializes = new List<SerializeObject.ChatUserModelSerializeObject>();
+            foreach (var item in UsersList)
+            {
+                chatUserModelSerializes.Add(new SerializeObject.ChatUserModelSerializeObject(item));
+            }
+
+            List<SerializeObject.MessageCanelModelSerializeObject> messageCanelModelSerializes = new List<SerializeObject.MessageCanelModelSerializeObject>();
+            foreach (var item in MessagesCanelList)
+            {
+                messageCanelModelSerializes.Add(new SerializeObject.MessageCanelModelSerializeObject(item));
+            }
+
+            SerializeObject.SaveInformationsModelSerializeObject serializeObject = new SerializeObject.SaveInformationsModelSerializeObject()
+            {
+                ChatUsers = chatUserModelSerializes,
+                MessageCanels = messageCanelModelSerializes,
+                ActiveUserIndex = UsersList.IndexOf(ActiveUser)
+            };
+
+
             using (var f = File.CreateText(SavePath))
             {
-                f.Write(JsonConvert.SerializeObject(new SerializeObject.ChatUserModelSerializeObject(ActiveUser)));
+                f.Write(JsonConvert.SerializeObject(serializeObject));
             }
+
+
+            //if (File.Exists(UsersDataSavePath))
+            //    File.Delete(UsersDataSavePath);
+
+            //List<SerializeObject.ChatUserModelSerializeObject> chatUserModelSerializes = new List<SerializeObject.ChatUserModelSerializeObject>();
+            //foreach (var item in UsersList)
+            //{
+            //    chatUserModelSerializes.Add(new SerializeObject.ChatUserModelSerializeObject(item));
+            //}
+
+            //using (var f = File.CreateText(UsersDataSavePath))
+            //{
+            //    f.Write(JsonConvert.SerializeObject(chatUserModelSerializes));
+            //}
+
+            //// ----------------------------------------------------------------------------------------------------------------------------------------------------- //
+
+            //if (File.Exists(MessgesCanellsSavePath))
+            //    File.Delete(MessgesCanellsSavePath);
+
+            //List<SerializeObject.MessageCanelModelSerializeObject> messageCanelModelSerializes = new List<SerializeObject.MessageCanelModelSerializeObject>();
+            //foreach (var item in MessagesCanelList)
+            //{
+            //    messageCanelModelSerializes.Add(new SerializeObject.MessageCanelModelSerializeObject(item));
+            //}
+
+            //using (var f = File.CreateText(MessgesCanellsSavePath))
+            //{
+            //    f.Write(JsonConvert.SerializeObject(messageCanelModelSerializes));
+            //}
         }
 
         public void DownloadUserDataFromFile()
         {
+            //if (File.Exists(SavePath))
+            //    using (var f = File.OpenText(MessgesCanellsSavePath))
+            //    {
+            //        List<SerializeObject.MessageCanelModelSerializeObject> messageCanelModelSerializes = JsonConvert.DeserializeObject<List<SerializeObject.MessageCanelModelSerializeObject>>(f.ReadToEnd());
+            //        MessagesCanelList = new List<MessageCanelModel>();
+            //        foreach (var item in messageCanelModelSerializes)
+            //        {
+            //            MessagesCanelList.Add(new MessageCanelModel(item));
+            //        }
+            //    }
+
+            //if (File.Exists(UsersDataSavePath))
+            //    using (var f = File.OpenText(UsersDataSavePath))
+            //    {
+            //        List<SerializeObject.ChatUserModelSerializeObject> chatUserModelSerializes = JsonConvert.DeserializeObject<List<SerializeObject.ChatUserModelSerializeObject>>(f.ReadToEnd());
+            //        UsersList = new List<ChatUserModel>();
+            //        foreach (var item in chatUserModelSerializes)
+            //        {
+            //            UsersList.Add(new ChatUserModel(item));
+            //        }
+            //    }
+
             if (File.Exists(SavePath))
                 using (var f = File.OpenText(SavePath))
                 {
-                    ActiveUser = new ChatUserModel(JsonConvert.DeserializeObject<SerializeObject.ChatUserModelSerializeObject>(f.ReadToEnd()));
+                    SerializeObject.SaveInformationsModelSerializeObject serializeObject = JsonConvert.DeserializeObject<SerializeObject.SaveInformationsModelSerializeObject>(f.ReadToEnd());
+
+                    List<SerializeObject.MessageCanelModelSerializeObject> messageCanelModelSerializes = serializeObject.MessageCanels;
+                    MessagesCanelList = new List<MessageCanelModel>();
+                    foreach (var item in messageCanelModelSerializes)
+                    {
+                        MessagesCanelList.Add(new MessageCanelModel(item));
+                    }
+
+                    List<SerializeObject.ChatUserModelSerializeObject> chatUserModelSerializes = serializeObject.ChatUsers;
+                    UsersList = new List<ChatUserModel>();
+                    foreach (var item in chatUserModelSerializes)
+                    {
+                        UsersList.Add(new ChatUserModel(item));
+                    }
+                    ActiveUser = UsersList[serializeObject.ActiveUserIndex];
                 }
+
+            AddContacts();
+
         }
 
         #endregion

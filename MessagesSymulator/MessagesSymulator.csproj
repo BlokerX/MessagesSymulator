@@ -78,6 +78,7 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Models\ChatUserModel.cs" />
     <Compile Include="Models\LinkComponentModel.cs" />
+    <Compile Include="Models\MessageCanelModel.cs" />
     <Compile Include="Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -92,7 +93,9 @@
     <Compile Include="SerializeObject\ChatUserModelSerializeObject.cs" />
     <Compile Include="SerializeObject\ContactModelSerializeObject.cs" />
     <Compile Include="SerializeObject\LinkComponentModelSerializeObject.cs" />
+    <Compile Include="SerializeObject\MessageCanelModelSerializeObject.cs" />
     <Compile Include="SerializeObject\MessageModelSerializeObject.cs" />
+    <Compile Include="SerializeObject\SaveInformationsModelSerializeObject.cs" />
     <Compile Include="SerializeObject\UserInformationsSerializeObject.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="Controls\EditTextPopup.xaml">

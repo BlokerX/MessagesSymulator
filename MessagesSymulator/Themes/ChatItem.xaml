@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:MessagesSymulator.Controls">
     <Style TargetType="ListViewItem" x:Key="ChatItem">
 
         <Setter Property="Template">
@@ -9,49 +9,68 @@
                         <Grid.Background>
                             <SolidColorBrush x:Name="BackgroundGridColor" Color="Transparent"/>
                         </Grid.Background>
-                        
+
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
-                        <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                                 Margin="10,5,10,-3">
 
-                            <Ellipse Width="35" Height="35">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding ImageSource}"
+                                <Ellipse Width="35" Height="35">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding InformationsAboutUser.ImageSource}"
                                             RenderOptions.BitmapScalingMode="Fant"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
+                                    </Ellipse.Fill>
+                                </Ellipse>
 
-                            <StackPanel Margin="5,-5,0,5" VerticalAlignment="Center">
+                                <StackPanel Margin="5,-5,0,5" VerticalAlignment="Center">
 
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Label Content="{Binding Username}"
-                                       Foreground="{Binding UsernameColor}"
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Label Content="{Binding InformationsAboutUser.Username}"
+                                       Foreground="{Binding InformationsAboutUser.UsernameColor}"
                                        FontSize="16"
                                        FontWeight="SemiBold"/>
-                                    <Label Content="{Binding Time}"
+                                        <Label Content="{Binding Time}"
                                        Foreground="#5f7673"
                                        FontSize="11"
                                        FontWeight="SemiBold"
                                        Margin="-5,4,0,0"/>
-                                </StackPanel>
-                                <Label Content="{Binding Message}"
+                                    </StackPanel>
+                                    <Label Content="{Binding Message}"
                                    Foreground="#dcddde"
                                    FontSize="15"
                                    FontWeight="Regular"
                                    Margin="1,-6,0,0"/>
+                                </StackPanel>
+
                             </StackPanel>
 
-                        </StackPanel>
-
-                        <ListView HorizontalAlignment="Left"
+                            <ListView HorizontalAlignment="Left"
                                   ItemsSource="{Binding ImageLinks}"
                                   Background="Transparent"
                                   BorderBrush="Transparent"
                                   ItemContainerStyle="{DynamicResource LinkMessageComponent}"
                                   Margin="51,-5,0,1"/>
 
-                    </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Right"
+                                    VerticalAlignment="Top" Orientation="Horizontal">
+                            <Border x:Name="OptionsPanel" Background="Yellow"
+                                    Margin="0,-20,20,0"
+                                    Padding="1"
+                                    CornerRadius="3" 
+                                    Opacity="0">
+                                <Border Width="28" Height="28"  
+                                    Background="Orange"
+                                    CornerRadius="3">
+                                    <controls:ImageButton Margin="2"
+                                        ImageSourceNormalState="{StaticResource Trash_Normal}"
+                                        ImageSourceMouseOver="{StaticResource Trash_Hover}"
+                                        ImageSourceClick="{StaticResource Trash_Click}"/>
+                                </Border>
+                            </Border>
+                        </StackPanel>
+
                     </Grid>
 
                     <ControlTemplate.Triggers>
@@ -63,6 +82,11 @@
                                                             FillBehavior="HoldEnd"
                                                             Duration="0"
                                                             To="#32353b"/>
+                                    <DoubleAnimation Storyboard.TargetName="OptionsPanel"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             FillBehavior="HoldEnd"
+                                                             Duration="0"
+                                                             To="1"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -75,6 +99,11 @@
                                                             FillBehavior="HoldEnd"
                                                             Duration="0"
                                                             To="Transparent"/>
+                                    <DoubleAnimation Storyboard.TargetName="OptionsPanel"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             FillBehavior="HoldEnd"
+                                                             Duration="0"
+                                                             To="0"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -108,7 +137,7 @@
                                    FontSize="15"
                                    FontWeight="Regular"
                                    Margin="51,0,0,1"/>
-                                    
+
                                     <ListView HorizontalAlignment="Left"
                                   ItemsSource="{Binding ImageLinks}"
                                   Background="Transparent"
@@ -137,7 +166,7 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                                
+
                                 <EventTrigger RoutedEvent="MouseLeave">
                                     <BeginStoryboard>
                                         <Storyboard>
@@ -155,7 +184,7 @@
                                     </BeginStoryboard>
                                 </EventTrigger>
                             </ControlTemplate.Triggers>
-                            
+
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>

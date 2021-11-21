@@ -83,6 +83,7 @@ namespace MessagesSymulator
                 smwp.BackgroundClickEvent += Popup_BackgroundClickEvent;
                 smwp.SendButtonEvent += SendMessageWithLinkComponentPopup_SendButtonEvent;
                 MainPanel.Children.Add(smwp);
+                (DataContext as MainViewModel).IsMessageGood = false;
             }
         }
 
@@ -92,6 +93,7 @@ namespace MessagesSymulator
             //(DataContext as MainViewModel).Message = e.MessageText;
             (DataContext as MainViewModel).MessageLink = e.Link;
             MainPanel.Children.Remove(smwlcp);
+            (DataContext as MainViewModel).IsMessageGood = true;
             (DataContext as MainViewModel).SendCommand.Execute(this);
         }
 
@@ -99,6 +101,7 @@ namespace MessagesSymulator
         {
             var enp = (sender as UIElement);
             MainPanel.Children.Remove(enp);
+            (DataContext as MainViewModel).IsMessageGood = true;
         }
 
         #endregion
@@ -189,6 +192,18 @@ namespace MessagesSymulator
         {
             var mvm = (DataContext as MainViewModel);
             mvm.SaveUserData();
+        }
+
+        private void ImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as MainViewModel).ActiveUser = (DataContext as MainViewModel).UsersList.Last();
+            (DataContext as MainViewModel).ActiveUser.SelectedContact = (DataContext as MainViewModel).ActiveUser.Contacts.First();
+        }
+
+        private void ImageButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            (DataContext as MainViewModel).ActiveUser = (DataContext as MainViewModel).UsersList.First();
+            (DataContext as MainViewModel).ActiveUser.SelectedContact = (DataContext as MainViewModel).ActiveUser.Contacts.First();
         }
     }
 }

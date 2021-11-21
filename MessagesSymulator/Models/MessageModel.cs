@@ -4,14 +4,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MessagesSymulator.Models
 {
-    public class MessageModel : UserInformations
+    public class MessageModel
     {
+        public UserInformations InformationsAboutUser { get; set; }
         public string Message { get; set; }
 
-        private LinkComponentModel _imageLink = new LinkComponentModel();
+        private LinkComponentModel _imageLink;
         public LinkComponentModel ImageLink
         {
             get { return _imageLink; }
@@ -46,13 +48,13 @@ namespace MessagesSymulator.Models
         }
 
         // Deserialize
-        public MessageModel(SerializeObject.MessageModelSerializeObject serializeObject) : base(serializeObject)
+        public MessageModel(SerializeObject.MessageModelSerializeObject serializeObject)
         {
             Message = serializeObject.Message;
             Time = serializeObject.Time;
             IsFirst = serializeObject.IsFirst;
             ImageLink = new LinkComponentModel(serializeObject.ImageLink);
-
+            InformationsAboutUser = new UserInformations(serializeObject.InformationsAboutUser);
         }
 
         public MessageModel(string message, LinkComponentModel imageLink, DateTime time, bool isFirst)
@@ -67,5 +69,6 @@ namespace MessagesSymulator.Models
         {
 
         }
+// todo zrobić kontrolkę chatItem i pomyśleć nad dziedziczeniem lub przekazaniem argumentów z wiadomości
     }
 }

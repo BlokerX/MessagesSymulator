@@ -9,6 +9,14 @@ namespace MessagesSymulator.Models
 {
     public class UserInformations : ObservableObject
     {
+        private readonly int _id = 1;
+
+        public int ID
+        {
+            get { return _id; }
+        }
+
+
         private string _username;
         public string Username
         {
@@ -71,14 +79,18 @@ namespace MessagesSymulator.Models
         // Deserialize
         public UserInformations(SerializeObject.UserInformationsSerializeObject serializeObject)
         {
+            _id = serializeObject.ID;
+            OccupiedIDs.Add(ID);
             Username = serializeObject.Username;
             UsernameColor = serializeObject.UsernameColor;
             ImageSource = serializeObject.ImageSource;
             ActiveState = serializeObject.ActiveState;
         }
 
-        public UserInformations(string username, string usernameColor, string imageSource, bool activeState)
+        public UserInformations(int iD, string username, string usernameColor, string imageSource, bool activeState)
         {
+            _id = iD;
+            OccupiedIDs.Add(ID);
             Username = username;
             UsernameColor = usernameColor;
             ImageSource = imageSource;
@@ -87,7 +99,24 @@ namespace MessagesSymulator.Models
 
         public UserInformations()
         {
-
+            _id = GetNewID();
+            OccupiedIDs.Add(ID);
         }
+
+        private int GetNewID()
+        {
+            int nextID = 1;
+            // dodać sortowanie wartości occupiedIDs
+            foreach (var item in OccupiedIDs)
+            {
+                if (item == nextID)
+                {
+                    nextID++;
+                }
+            }
+            return nextID;
+        }
+
+        public static List<int> OccupiedIDs { get; set; } = new List<int>();
     }
 }
