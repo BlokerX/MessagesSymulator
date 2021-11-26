@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="./Themes/StylishScrollbar.xaml"/>
                 <ResourceDictionary Source="./Themes/DefaultButton.xaml"/>
                 <ResourceDictionary Source="./Themes/BackgroundButton.xaml"/>
+                <ResourceDictionary Source="./Themes/UserListViewItem.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

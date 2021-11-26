@@ -220,7 +220,6 @@
                                               ImageSourceClick="{StaticResource Call_Click}"
                                               Width="30" Height="30"
                                               BorderThickness="0"
-                                              Click="ImageButton_Click"
                                               VerticalAlignment="Center"
                                               Margin="5,0,5,0"/>
 
@@ -230,7 +229,7 @@
                                               ImageSourceClick="{StaticResource Camera_Click}"
                                               BorderThickness="0"
                                               VerticalAlignment="Center"
-                                              Margin="5,0,5,0" Click="ImageButton_Click_1"/>
+                                              Margin="5,0,5,0"/>
 
                         <Button Content="HELP" Width="30" Height="30"
                             BorderThickness="0"

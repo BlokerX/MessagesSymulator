@@ -33,7 +33,33 @@ namespace MessagesSymulator
             SettingsPanel.Settings_MyAccount_Page.EditUsernameButton.Click += EditUsernameButton_Click;
             SettingsPanel.Settings_MyAccount_Page.EditUsernameColorButton.Click += EditUsernameColorButton_Click;
 
+            SettingsPanel.Settings_MyAccount_Page.EditImageSourceButton.Click += EditImageSourceButton_Click;
+
+            SettingsPanel.Settings_UsersSettings_Page.AddNewUserButton.Click += UsersSettingsAddNewUserButton_Click;
+
             #endregion
+        }
+
+        private void UsersSettingsAddNewUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            var cnup = new CreateNewUserPopup();
+            cnup.SaveButtonEvent += CreateNewUser_SaveButtonEvent;
+            cnup.BackgroundClickEvent += Popup_BackgroundClickEvent;
+            MainPanel.Children.Add(cnup);
+        }
+
+        private void CreateNewUser_SaveButtonEvent(object sender, EventArgs e)
+        {
+            var cnup = (sender as CreateNewUserPopup);
+            var vm = (DataContext as MainViewModel);
+            vm.UsersList.Add(new Models.ChatUserModel()
+            {
+                Username = cnup.UsernameTextBox.TextBoxSourceElement.Text,
+                UsernameColor = cnup.UsernameColorTextBox.TextBoxSourceElement.Text,
+                ImageSource = cnup.ImageSourceLabel.Content.ToString(),
+                ActiveState = true
+            });
+            MainPanel.Children.Remove(cnup);
         }
 
         #region BorderApp
@@ -155,7 +181,7 @@ namespace MessagesSymulator
 
         #endregion
 
-        #region EditUsernameButton
+        #region EditUsernameColorButton
 
         private void EditUsernameColorButton_Click(object sender, RoutedEventArgs e)
         {
@@ -182,7 +208,24 @@ namespace MessagesSymulator
 
         #endregion
 
-        #endregion EditUsernameButton
+        #region EditImageSourceButton
+
+        private void EditImageSourceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var fileDialog = new OpenFileDialog()
+            {
+                Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif"
+                //todo filtrowanie zdjęć + "|All Files|*.*"
+            };
+            if ((bool)fileDialog.ShowDialog())
+            {
+                (DataContext as MainViewModel).ActiveUser.ImageSource = fileDialog.FileName;
+            }
+        }
+
+        #endregion
+
+        #endregion EditButtons
 
         #endregion MyAccount
 
@@ -194,16 +237,6 @@ namespace MessagesSymulator
             mvm.SaveUserData();
         }
 
-        private void ImageButton_Click(object sender, RoutedEventArgs e)
-        {
-            (DataContext as MainViewModel).ActiveUser = (DataContext as MainViewModel).UsersList.Last();
-            (DataContext as MainViewModel).ActiveUser.SelectedContact = (DataContext as MainViewModel).ActiveUser.Contacts.First();
-        }
 
-        private void ImageButton_Click_1(object sender, RoutedEventArgs e)
-        {
-            (DataContext as MainViewModel).ActiveUser = (DataContext as MainViewModel).UsersList.First();
-            (DataContext as MainViewModel).ActiveUser.SelectedContact = (DataContext as MainViewModel).ActiveUser.Contacts.First();
-        }
     }
 }

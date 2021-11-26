@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="MessagesSymulator.Controls.CreateNewUserPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MessagesSymulator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1600">
+    <Grid>
+
+        <Button x:Name="MainGrid" Style="{StaticResource BackgroundButton}"
+                Background="#BF000000"
+                Click="BackgroundButton_Click">
+        </Button>
+
+        <Border HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#36393f"
+                CornerRadius="2">
+
+            <StackPanel>
+                <StackPanel Margin="15">
+
+                    <Label Content="Kreator nowego użytkownika"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"
+                           FontSize="22"/>
+                    
+                    <Label Content="Stwórz nowego użytkownika uzupełniając pola danych"
+                           Foreground="#b8babd"
+                           HorizontalAlignment="Center"
+                           FontSize="14"/>
+
+                    <StackPanel>
+                        <StackPanel>
+
+                            <Label Content="USERNAME"
+                                   FontWeight="Medium"
+                                   Foreground="#b9bbbe"
+                                   Margin="0,10,0,5"/>
+
+                            <local:PropertiesEditTextBox x:Name="UsernameTextBox"/>
+
+                        </StackPanel>
+                        
+                        <StackPanel>
+
+                            <Label Content="USERNAME COLOR"
+                                   FontWeight="Medium"
+                                   Foreground="#b9bbbe"
+                                   Margin="0,10,0,5"/>
+
+                            <local:PropertiesEditTextBox x:Name="UsernameColorTextBox" />
+
+                        </StackPanel>
+
+                        <StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                
+                            <Label Content="AVATAR"
+                                   FontWeight="Medium"
+                                   Foreground="#b9bbbe"
+                                   Margin="0,10,0,5"/>
+
+                                <Label x:Name="ImageSourceLabel" Content="-"
+                                       FontSize="14"
+                                       FontWeight="Regular"
+                                       Foreground="White"
+                                       Margin="0,7,0,0"/>
+
+                            </StackPanel>
+
+                            <local:TextButton Content="Chose Image"
+                                              Background="#4f545c"
+                                               MouseOverColor="#5d6269"
+                                               Foreground="#ebecec"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               Padding="15,7,15,7"
+                                               FontSize="14"
+                                               FontWeight="SemiBold"
+                                               Style="{StaticResource DefaultButton}"
+                                              Click="TextButton_Click"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Border Background="#2f3136" 
+                        CornerRadius="0,0,2,2"
+                        VerticalAlignment="Bottom"
+                        Padding="15">
+                    <StackPanel HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                        <local:TextButton x:Name="SaveButton"
+                                          Content="Gotowe"
+                                          Foreground="White"
+                                          Background="#5865f2"
+                                          MouseOverColor="#4751c4"
+                                          FontWeight="SemiBold"
+                                          FontSize="12"
+                                          Style="{StaticResource DefaultButton}"
+                                          Padding="15,7,15,7"
+                                          Click="SaveButton_Click"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+    
+</UserControl>

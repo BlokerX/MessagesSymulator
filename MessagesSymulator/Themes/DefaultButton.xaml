@@ -25,9 +25,9 @@
                                        HorizontalAlignment="Center"
                                        Background="Transparent"/>
 
-                                <Image Source="{Binding ButtonImage}"
+                                <!--Image Source="{Binding ButtonImage}"
                                        VerticalAlignment="Stretch"
-                                       HorizontalAlignment="Stretch"/>
+                                       HorizontalAlignment="Stretch"/-->
                                 
                             </Grid>
                         </Border>

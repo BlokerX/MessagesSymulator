@@ -15,7 +15,19 @@ namespace MessagesSymulator.ViewModel
 {
     class MainViewModel : ObservableObject
     {
-        public List<ChatUserModel> UsersList = new List<ChatUserModel>();
+        public ObservableCollection<ChatUserModel> _usersList = new ObservableCollection<ChatUserModel>();
+        public ObservableCollection<ChatUserModel> UsersList 
+        { 
+            get
+            {
+                return _usersList;
+            }
+            set
+            {
+                UsersList = value;
+                OnPropertyChanged();
+            }
+        }
 
         public List<MessageCanelModel> MessagesCanelList { get; set; } = new List<MessageCanelModel>();
 
@@ -80,10 +92,11 @@ namespace MessagesSymulator.ViewModel
             #region CommandsInitialize
             SendCommand = new RelayCommand(o =>
             {
-                if (IsMessageGood && ((Message != null && Message != "" &&
-                CharCountInString(Message, ' ') != Message.Length) || MessageLink != null))
+                if (ActiveUser.Contacts.Count > 0 && IsMessageGood && 
+                ((Message != null && Message != "" && CharCountInString(Message, ' ') != Message.Length) || MessageLink != null))
                 {
                     if (ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.Username != ActiveUser.Username ||
+                        ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.ID != ActiveUser.ID ||
                         ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.ImageSource != ActiveUser.ImageSource ||
                         ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.UsernameColor != ActiveUser.UsernameColor)
                         ActiveUser.SelectedContact.IsFirstMy = true;
@@ -131,7 +144,7 @@ namespace MessagesSymulator.ViewModel
 
                 #region AddUsers
 
-                UsersList.Add(new ChatUserModel()
+                _usersList.Add(new ChatUserModel()
                 {
                     Username = "Orion Łukasik",
                     UsernameColor = "Cyan",
@@ -140,7 +153,7 @@ namespace MessagesSymulator.ViewModel
                     ContactsCanels = new List<int> { 1 }
                 });
 
-                UsersList.Add(new ChatUserModel()
+                _usersList.Add(new ChatUserModel()
                 {
                     Username = "Adam Bogusz",
                     UsernameColor = "Brown",
@@ -184,7 +197,7 @@ namespace MessagesSymulator.ViewModel
 
                     item.Messages.Add(new MessageModel()
                     {
-                        InformationsAboutUser = UsersList.First(),
+                        InformationsAboutUser = _usersList.First(),
                         //ActiveState = item.ActiveState,//todo usunąć active state z wiadomości
                         Message = "Hello world!",
                         Time = DateTime.Now,
@@ -196,11 +209,13 @@ namespace MessagesSymulator.ViewModel
 
                 #endregion
 
-                ActiveUser = UsersList.First();
+                ActiveUser = _usersList.First();
 
             }
 
+            if(ActiveUser.Contacts.Count > 0)
             ActiveUser.SelectedContact = ActiveUser.Contacts.First();
+
             SaveUserData();
         }
 
@@ -208,13 +223,13 @@ namespace MessagesSymulator.ViewModel
         {
             foreach (var messageCanel in MessagesCanelList)
             {
-                foreach (var user in UsersList)
+                foreach (var user in _usersList)
                 {
 
                     if (user.ContactsCanels.Contains(messageCanel.ID))
                     {
                         user.Contacts.Clear();
-                        foreach (var contactUser in UsersList)
+                        foreach (var contactUser in _usersList)
                         {
                             if (contactUser.ContactsCanels.Contains(messageCanel.ID) && contactUser != user)
                             {
@@ -245,7 +260,7 @@ namespace MessagesSymulator.ViewModel
                 File.Delete(SavePath);
 
             List<SerializeObject.ChatUserModelSerializeObject> chatUserModelSerializes = new List<SerializeObject.ChatUserModelSerializeObject>();
-            foreach (var item in UsersList)
+            foreach (var item in _usersList)
             {
                 chatUserModelSerializes.Add(new SerializeObject.ChatUserModelSerializeObject(item));
             }
@@ -260,7 +275,7 @@ namespace MessagesSymulator.ViewModel
             {
                 ChatUsers = chatUserModelSerializes,
                 MessageCanels = messageCanelModelSerializes,
-                ActiveUserIndex = UsersList.IndexOf(ActiveUser)
+                ActiveUserIndex = _usersList.IndexOf(ActiveUser)
             };
 
 
@@ -338,12 +353,13 @@ namespace MessagesSymulator.ViewModel
                     }
 
                     List<SerializeObject.ChatUserModelSerializeObject> chatUserModelSerializes = serializeObject.ChatUsers;
-                    UsersList = new List<ChatUserModel>();
+                    _usersList = new ObservableCollection<ChatUserModel>();
                     foreach (var item in chatUserModelSerializes)
                     {
-                        UsersList.Add(new ChatUserModel(item));
+                        _usersList.Add(new ChatUserModel(item));
                     }
-                    ActiveUser = UsersList[serializeObject.ActiveUserIndex];
+                    if (serializeObject.ActiveUserIndex >= 0  && serializeObject.ActiveUserIndex < _usersList.Count)
+                    ActiveUser = _usersList[serializeObject.ActiveUserIndex];
                 }
 
             AddContacts();

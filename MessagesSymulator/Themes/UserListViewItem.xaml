@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style TargetType="ListViewItem" x:Key="UserListViewItem">
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#393c43"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#34373c"/>
+            </Trigger>
+
+        </Style.Triggers>
+
+        <Setter Property="Background" Value="Transparent"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="5"
+                            Margin="5,5,5,0">
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+
+                            <Ellipse Width="30" Height="30"
+                                     Margin="8">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding ImageSource}"
+                                                RenderOptions.BitmapScalingMode="Fant"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Center"
+                                        Margin="0,0,8,0">
+
+                                <Label Content="{Binding Username}"
+                                       Foreground="{Binding UsernameColor}"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,0"/>
+
+                                <Label Content="{Binding ID}"
+                                       Foreground="#afb1b5"
+                                       FontWeight="Regular"
+                                       Margin="0,-10,0,0"/>
+
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+</ResourceDictionary>
