@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:MessagesSymulator.Controls">
 
-    <Style TargetType="ListViewItem" x:Key="ContactCard">
+    <Style TargetType="ListViewItem" x:Key="ContactListViewItem">
 
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
@@ -11,9 +11,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#34373c"/>
             </Trigger>
-                
+
         </Style.Triggers>
-        
+
         <Setter Property="Background" Value="Transparent"/>
 
         <Setter Property="Template">
@@ -22,35 +22,52 @@
                     <Border Background="{TemplateBinding Background}"
                             CornerRadius="5"
                             Margin="5,5,5,0">
-                        <StackPanel Orientation="Horizontal"
+                        <Grid>
+
+                            <StackPanel Orientation="Horizontal"
                                     VerticalAlignment="Center">
 
-                            <Ellipse Width="30" Height="30"
+                                <Ellipse Width="30" Height="30"
                                      Margin="8">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding InformationsAboutUser.ImageSource}"
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding InformationsAboutUser.ImageSource}"
                                                 RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
+                                    </Ellipse.Fill>
+                                </Ellipse>
 
-                            <StackPanel Orientation="Vertical"
+                                <StackPanel Orientation="Vertical"
                                         VerticalAlignment="Center"
                                         Margin="0,0,8,0">
 
-                                <Label Content="{Binding InformationsAboutUser.Username}"
+                                    <Label Content="{Binding InformationsAboutUser.Username}"
                                        Foreground="{Binding InformationsAboutUser.UsernameColor}"
                                        FontSize="16"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,0"/>
 
-                                <Label Content="{Binding LastMessage}"
+                                    <Label Content="{Binding InformationsAboutUser.ID}"
                                        Foreground="#afb1b5"
                                        FontWeight="Regular"
                                        Margin="0,-10,0,0"/>
 
+                                </StackPanel>
+
                             </StackPanel>
 
-                        </StackPanel>
+                            <controls:TextButton Content="Usuń" 
+                                 x:Name="DeleteContactButton"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Foreground="White"
+                                 Background="#ed4245"
+                                 MouseOverColor="#c03537"
+                                 FontWeight="SemiBold"
+                                 FontSize="12"
+                                 Style="{StaticResource DefaultButton}"
+                                 Padding="15,7,15,7"
+                                 Margin="0,0,15,0"/>
+
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

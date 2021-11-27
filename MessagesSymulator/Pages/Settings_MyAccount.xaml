@@ -51,7 +51,8 @@
                                         <Ellipse Width="80" Height="80">
                                             <Ellipse.Fill>
                                                 <ImageBrush ImageSource="{Binding ActiveUser.ImageSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                            RenderOptions.BitmapScalingMode="Fant"/>
+                                                            RenderOptions.BitmapScalingMode="Fant"
+                                                            Stretch="UniformToFill"/>
                                             </Ellipse.Fill>
                                         </Ellipse>
                                         <Border Background="#202225"
@@ -163,7 +164,9 @@
                                                        FontSize="14"
                                                        FontWeight="Regular"
                                                        Foreground="White"
-                                                       Margin="0,-4,0,0"/>
+                                                       Margin="0,-4,0,0"
+                                                       MaxWidth="390"
+                                                       HorizontalAlignment="Left"/>
                                             </StackPanel>
                                             
                                             <controls:TextButton x:Name="EditImageSourceButton"

@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="./Themes/DefaultButton.xaml"/>
                 <ResourceDictionary Source="./Themes/BackgroundButton.xaml"/>
                 <ResourceDictionary Source="./Themes/UserListViewItem.xaml"/>
+                <ResourceDictionary Source="./Themes/ContactListViewItem.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

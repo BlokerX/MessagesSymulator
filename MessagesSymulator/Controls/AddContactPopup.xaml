@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="MessagesSymulator.Controls.AddContactPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MessagesSymulator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1600">
+    <Grid>
+
+        <Button x:Name="MainGrid" Style="{StaticResource BackgroundButton}"
+                Background="#BF000000"
+                Click="BackgroundButton_Click">
+        </Button>
+
+        <Border HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#36393f"
+                CornerRadius="2">
+
+            <StackPanel>
+                <StackPanel Margin="15">
+
+                    <Label Content="Dodawanie nowego kontaktu"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"
+                           FontSize="22"/>
+
+                    <Label Content="Wybierz użytkownika z listy aby go dodać"
+                           Foreground="#b8babd"
+                           HorizontalAlignment="Center"
+                           FontSize="14"/>
+
+                    <StackPanel>
+
+                        <Label Content="Użytkownicy:"
+                                   FontWeight="Medium"
+                                   Foreground="white"
+                                   FontSize="16"
+                                   Margin="0,10,0,5"/>
+
+                        <ListView x:Name="UserList"
+                                  ItemsSource="{Binding UsersList}"
+                                  Width="550"
+                                  ItemContainerStyle="{StaticResource UserListViewItem}"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  BorderBrush="Transparent"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Border Background="#2f3136" 
+                        CornerRadius="0,0,2,2"
+                        VerticalAlignment="Bottom"
+                        Padding="15">
+                    <StackPanel HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                        <local:TextButton x:Name="AddButton"
+                                          Content="Dodaj"
+                                          Foreground="White"
+                                          Background="#5865f2"
+                                          MouseOverColor="#4751c4"
+                                          FontWeight="SemiBold"
+                                          FontSize="12"
+                                          Style="{StaticResource DefaultButton}"
+                                          Padding="15,7,15,7"
+                                          Click="AddButton_Click"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+</UserControl>

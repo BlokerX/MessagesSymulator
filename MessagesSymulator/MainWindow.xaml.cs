@@ -30,15 +30,50 @@ namespace MessagesSymulator
             #region SettingsPanelInitialize
 
             SettingsPanel.BackToTheMenuButton.Click += SettingsCloseButton_Click;
+
             SettingsPanel.Settings_MyAccount_Page.EditUsernameButton.Click += EditUsernameButton_Click;
             SettingsPanel.Settings_MyAccount_Page.EditUsernameColorButton.Click += EditUsernameColorButton_Click;
-
             SettingsPanel.Settings_MyAccount_Page.EditImageSourceButton.Click += EditImageSourceButton_Click;
+
+            SettingsPanel.Settings_FrendsSettings_Page.AddContactButton.Click += AddContactButton_Click;
 
             SettingsPanel.Settings_UsersSettings_Page.AddNewUserButton.Click += UsersSettingsAddNewUserButton_Click;
 
             #endregion
         }
+
+        #region FrendsSettings
+
+        private void AddContactButton_Click(object sender, RoutedEventArgs e)
+        {
+            var acp = new AddContactPopup();
+            acp.AddButtonEvent += AddContact_AddButtonEvent;
+            acp.BackgroundClickEvent += Popup_BackgroundClickEvent;
+            MainPanel.Children.Add(acp);
+        }
+
+        private void AddContact_AddButtonEvent(object sender, EventArgs e)
+        {
+            var acp = sender as AddContactPopup;
+            var mainViewModel = (DataContext as MainViewModel);
+            if (acp.UserList.SelectedItem != null && acp.UserList.SelectedItem != mainViewModel.ActiveUser)
+            {
+                var selectedItem = acp.UserList.SelectedItem as Models.ChatUserModel;
+
+                foreach (var item in mainViewModel.ActiveUser.Contacts)
+                    if (selectedItem.ID == item.InformationsAboutUser.ID) return;
+
+                var mc = new Models.MessageCanelModel();
+                mainViewModel.ActiveUser.ContactsCanels.Add(mc.ID);
+                selectedItem.ContactsCanels.Add(mc.ID);
+                mainViewModel.MessagesCanelList.Add(mc);
+
+                mainViewModel.AddContacts();
+                MainPanel.Children.Remove(acp);
+            }
+        }
+
+        #endregion
 
         private void UsersSettingsAddNewUserButton_Click(object sender, RoutedEventArgs e)
         {
@@ -101,11 +136,11 @@ namespace MessagesSymulator
             var fileDialog = new OpenFileDialog()
             {
                 Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif"
-             //todo filtrowanie zdjęć + "|All Files|*.*"
+                //todo filtrowanie zdjęć + "|All Files|*.*"
             };
             if ((bool)fileDialog.ShowDialog())
             {
-                var smwp = new SendMessageWithLinkComponentPopup((DataContext as MainViewModel).Message, fileDialog.FileName,fileDialog.SafeFileName);
+                var smwp = new SendMessageWithLinkComponentPopup((DataContext as MainViewModel).Message, fileDialog.FileName, fileDialog.SafeFileName);
                 smwp.BackgroundClickEvent += Popup_BackgroundClickEvent;
                 smwp.SendButtonEvent += SendMessageWithLinkComponentPopup_SendButtonEvent;
                 MainPanel.Children.Add(smwp);
@@ -237,6 +272,22 @@ namespace MessagesSymulator
             mvm.SaveUserData();
         }
 
+        //private void ListView_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    var lv = (sender as ListView);
+        //    var tb = lv.ItemContainerStyle.Resources.FindName("TrashButton", this);
+        //    var trashButton = tb as ImageButton;
+        //    trashButton.Click += ChatItemsListViewTrashButton_Click;
+        //}
 
+        //private void ChatItemsListViewTrashButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var ib = (sender as ImageButton);
+        //    var lvi = (ib.TemplatedParent as ListViewItem);
+        //    var lv = (lvi.Parent as ListView);
+        //    int index = lv.Items.IndexOf(lvi);
+        //    var cm = (lv.ItemsSource as Models.MessageModel);
+        //    (DataContext as MainViewModel).ActiveUser.SelectedContact.Messages.Remove(cm);
+        //}
     }
 }

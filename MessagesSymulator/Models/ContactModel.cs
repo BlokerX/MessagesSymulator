@@ -9,7 +9,7 @@ namespace MessagesSymulator.Models
 {
     public class ContactModel
     {
-        public ObservableCollection<MessageModel> Messages { get; }
+        public ObservableCollection<MessageModel> Messages { get; } = new ObservableCollection<MessageModel> ();
         public bool IsFirstMy { get; set; } = true;
 
         public UserInformations InformationsAboutUser { get; set; }
@@ -40,7 +40,7 @@ namespace MessagesSymulator.Models
         {
             get
             {
-                if (Messages.Count > 0) { return Messages.Last().Message; }
+                if (Messages?.Count > 0) { return Messages.Last().Message; }
                 else return null;
             }
         }

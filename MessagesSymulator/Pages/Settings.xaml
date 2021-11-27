@@ -40,6 +40,13 @@
                             </Border>
 
                             <Border CornerRadius="5" Padding="8,3,8,3">
+                                <Label Content="Kontakty"
+                                           Foreground="#b9bbbe"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"/>
+                            </Border>
+                            
+                            <Border CornerRadius="5" Padding="8,3,8,3">
                                 <Label Content="Użytkownicy"
                                            Foreground="#b9bbbe"
                                            FontSize="14"
@@ -65,6 +72,8 @@
 
                 <local:Settings_MyAccount x:Name="Settings_MyAccount_Page"/>
 
+                <local:Settings_FrendsSettings x:Name="Settings_FrendsSettings_Page" Visibility="Hidden"/>
+                
                 <local:Settings_UsersSettings x:Name="Settings_UsersSettings_Page" Visibility="Hidden"/>
 
                 <controls:ImageButton x:Name="BackToTheMenuButton"

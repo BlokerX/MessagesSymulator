@@ -9,7 +9,7 @@ namespace MessagesSymulator.Models
 {
     public class MessageCanelModel
     {
-        public ObservableCollection<MessageModel> Messages;
+        public ObservableCollection<MessageModel> Messages = new ObservableCollection<MessageModel>();
 
         private readonly int _id = 1;
         public int ID
@@ -20,11 +20,13 @@ namespace MessagesSymulator.Models
         public MessageCanelModel(int iD)
         {
             _id = iD;
+            OccupiedIDs.Add(ID);
         }
 
         public MessageCanelModel(SerializeObject.MessageCanelModelSerializeObject serializeObject)
         {
             _id=serializeObject.ID;
+            OccupiedIDs.Add(ID);
             Messages = new ObservableCollection<MessageModel>();
             foreach (var item in serializeObject.Messages)
             {

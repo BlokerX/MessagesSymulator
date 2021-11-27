@@ -16,8 +16,8 @@ namespace MessagesSymulator.ViewModel
     class MainViewModel : ObservableObject
     {
         public ObservableCollection<ChatUserModel> _usersList = new ObservableCollection<ChatUserModel>();
-        public ObservableCollection<ChatUserModel> UsersList 
-        { 
+        public ObservableCollection<ChatUserModel> UsersList
+        {
             get
             {
                 return _usersList;
@@ -92,38 +92,42 @@ namespace MessagesSymulator.ViewModel
             #region CommandsInitialize
             SendCommand = new RelayCommand(o =>
             {
-                if (ActiveUser.Contacts.Count > 0 && IsMessageGood && 
-                ((Message != null && Message != "" && CharCountInString(Message, ' ') != Message.Length) || MessageLink != null))
+                if (ActiveUser.SelectedContact != null)
                 {
-                    if (ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.Username != ActiveUser.Username ||
-                        ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.ID != ActiveUser.ID ||
-                        ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.ImageSource != ActiveUser.ImageSource ||
-                        ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.UsernameColor != ActiveUser.UsernameColor)
-                        ActiveUser.SelectedContact.IsFirstMy = true;
-
-                    LinkComponentModel _imageLink = null;
-                    if (MessageLink != null)
-                        _imageLink = new LinkComponentModel(MessageLink);
-
-                    ActiveUser.SelectedContact.Messages.Add(new MessageModel()
+                    if (ActiveUser.Contacts.Count > 0 && IsMessageGood &&
+                    ((Message != null && Message != "" && CharCountInString(Message, ' ') != Message.Length) || MessageLink != null))
                     {
-                        InformationsAboutUser = new UserInformations
-                        (
-                            ActiveUser.ID,
-                            ActiveUser.Username,
-                            ActiveUser.UsernameColor,
-                            ActiveUser.ImageSource,
-                            ActiveUser.ActiveState
-                        ),
-                        Message = Message,
-                        Time = DateTime.Now,
-                        ImageLink = _imageLink,
-                        IsFirst = ActiveUser.SelectedContact.IsFirstMy
-                    });
-                    ActiveUser.SelectedContact.IsFirstMy = false;
+                        if (ActiveUser.SelectedContact.Messages.Count > 0 &&
+                        (ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.Username != ActiveUser.Username ||
+                            ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.ID != ActiveUser.ID ||
+                            ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.ImageSource != ActiveUser.ImageSource ||
+                            ActiveUser.SelectedContact.Messages.Last().InformationsAboutUser.UsernameColor != ActiveUser.UsernameColor))
+                            ActiveUser.SelectedContact.IsFirstMy = true;
 
-                    Message = "";
-                    MessageLink = null;
+                        LinkComponentModel _imageLink = null;
+                        if (MessageLink != null)
+                            _imageLink = new LinkComponentModel(MessageLink);
+
+                        ActiveUser.SelectedContact.Messages.Add(new MessageModel()
+                        {
+                            InformationsAboutUser = new UserInformations
+                            (
+                                ActiveUser.ID,
+                                ActiveUser.Username,
+                                ActiveUser.UsernameColor,
+                                ActiveUser.ImageSource,
+                                ActiveUser.ActiveState
+                            ),
+                            Message = Message,
+                            Time = DateTime.Now,
+                            ImageLink = _imageLink,
+                            IsFirst = ActiveUser.SelectedContact.IsFirstMy
+                        });
+                        ActiveUser.SelectedContact.IsFirstMy = false;
+
+                        Message = "";
+                        MessageLink = null;
+                    }
                 }
             });
             #endregion
@@ -131,8 +135,8 @@ namespace MessagesSymulator.ViewModel
             if (File.Exists(SavePath))
                 DownloadUserDataFromFile();
             else
-            {
-
+            {   
+                
                 #region MessagesCanelList
 
                 MessagesCanelList.Add(new MessageCanelModel()
@@ -157,38 +161,14 @@ namespace MessagesSymulator.ViewModel
                 {
                     Username = "Adam Bogusz",
                     UsernameColor = "Brown",
-                    ImageSource = "https://i.ytimg.com/vi/na6k3AXRyrQ/hq720.jpg",
+                    ImageSource = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
                     ActiveState = true,
                     ContactsCanels = new List<int> { 1 }
                 });
 
                 #endregion
 
-
-                #region AddContacts
                 AddContacts();
-
-                #region comments
-                //ActiveUser.Contacts.Add(new ContactModel()
-                //{
-                //    Username = "Belle Delphina",
-                //    UsernameColor = "Pink",
-                //    ImageSource = "https://telegra.ph/file/e264763c39e4195ab2634.jpg",
-                //    Messages = new ObservableCollection<MessageModel>()
-
-                //});
-
-                //ActiveUser.Contacts.Add(new ContactModel()
-                //{
-                //    Username = "Hayasaka",
-                //    UsernameColor = "Purple",
-                //    ImageSource = "https://i.ytimg.com/vi/na6k3AXRyrQ/hq720.jpg",
-                //    Messages = new ObservableCollection<MessageModel>()
-
-                //});
-                #endregion
-
-                #endregion
 
                 #region AddMessages
 
@@ -198,10 +178,10 @@ namespace MessagesSymulator.ViewModel
                     item.Messages.Add(new MessageModel()
                     {
                         InformationsAboutUser = _usersList.First(),
-                        //ActiveState = item.ActiveState,//todo usunąć active state z wiadomości
+                        //todo usunąć active state z wiadomości
                         Message = "Hello world!",
                         Time = DateTime.Now,
-                        ImageLink = new LinkComponentModel("http://2.bp.blogspot.com/-zVqfkF3YTqU/VQLhqBLGguI/AAAAAAAAANs/RYu3h4Gu6l4/s1600/slenderman28n-1-web.jpg"),
+                        ImageLink = new LinkComponentModel("https://rsjlawang.com/assets/images/lightbox/image-3.jpg"),
                         IsFirst = true
                     });
                 }
@@ -213,22 +193,23 @@ namespace MessagesSymulator.ViewModel
 
             }
 
-            if(ActiveUser.Contacts.Count > 0)
-            ActiveUser.SelectedContact = ActiveUser.Contacts.First();
+            if (ActiveUser.Contacts.Count > 0)
+                ActiveUser.SelectedContact = ActiveUser.Contacts.First();
 
             SaveUserData();
         }
 
-        private void AddContacts()
+        public void AddContacts()
         {
+            foreach (var user in _usersList)
+                user.Contacts.Clear();
+
             foreach (var messageCanel in MessagesCanelList)
             {
                 foreach (var user in _usersList)
                 {
-
                     if (user.ContactsCanels.Contains(messageCanel.ID))
                     {
-                        user.Contacts.Clear();
                         foreach (var contactUser in _usersList)
                         {
                             if (contactUser.ContactsCanels.Contains(messageCanel.ID) && contactUser != user)
@@ -358,8 +339,8 @@ namespace MessagesSymulator.ViewModel
                     {
                         _usersList.Add(new ChatUserModel(item));
                     }
-                    if (serializeObject.ActiveUserIndex >= 0  && serializeObject.ActiveUserIndex < _usersList.Count)
-                    ActiveUser = _usersList[serializeObject.ActiveUserIndex];
+                    if (serializeObject.ActiveUserIndex >= 0 && serializeObject.ActiveUserIndex < _usersList.Count)
+                        ActiveUser = _usersList[serializeObject.ActiveUserIndex];
                 }
 
             AddContacts();

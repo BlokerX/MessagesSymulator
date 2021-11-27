@@ -18,7 +18,7 @@
                                 <Ellipse Width="35" Height="35">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="{Binding InformationsAboutUser.ImageSource}"
-                                            RenderOptions.BitmapScalingMode="Fant"/>
+                                            RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
 
@@ -62,8 +62,8 @@
                                     CornerRadius="3">
                                 <Border Width="28" Height="28"  
                                     Background="Orange"
-                                    CornerRadius="3">
-                                    <controls:ImageButton Margin="2"
+                                    CornerRadius="3" >
+                                    <controls:ImageButton Margin="2" x:Name="TrashButton"
                                         ImageSourceNormalState="{StaticResource Trash_Normal}"
                                         ImageSourceMouseOver="{StaticResource Trash_Hover}"
                                         ImageSourceClick="{StaticResource Trash_Click}"/>
