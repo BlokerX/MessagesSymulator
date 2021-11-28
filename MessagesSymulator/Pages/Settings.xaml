@@ -27,17 +27,32 @@
                               Background="Transparent"
                               BorderBrush="Transparent"
                               BorderThickness="0"
-                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              SelectionChanged="UsersListView_SelectionChanged">
                     <ListView.ItemsSource>
                         <CompositeCollection>
-                            <ListBoxItem>
-                                <Border CornerRadius="5" Padding="8,3,8,3">
-                                    <Label Content="Moje Konto"
+
+                            <Border CornerRadius="5" Padding="8,3,8,3">
+                                <Label Content="Moje Konto"
                                            Foreground="#b9bbbe"
                                            FontSize="14"
                                            FontWeight="SemiBold"/>
-                                </Border>
-                            </ListBoxItem>
+                            </Border>
+
+                            <Border CornerRadius="5" Padding="8,3,8,3">
+                                <Label Content="Kontakty"
+                                           Foreground="#b9bbbe"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"/>
+                            </Border>
+                            
+                            <Border CornerRadius="5" Padding="8,3,8,3">
+                                <Label Content="Użytkownicy"
+                                           Foreground="#b9bbbe"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"/>
+                            </Border>
+
                         </CompositeCollection>
                     </ListView.ItemsSource>
 
@@ -57,6 +72,10 @@
 
                 <local:Settings_MyAccount x:Name="Settings_MyAccount_Page"/>
 
+                <local:Settings_FrendsSettings x:Name="Settings_FrendsSettings_Page" Visibility="Hidden"/>
+                
+                <local:Settings_UsersSettings x:Name="Settings_UsersSettings_Page" Visibility="Hidden"/>
+
                 <controls:ImageButton x:Name="BackToTheMenuButton"
                         Width="35" Height="35"
                         ImageSourceNormalState="{StaticResource Esc_Normal}"
@@ -71,6 +90,6 @@
             </Grid>
 
         </Grid>
-        
+
     </Grid>
 </UserControl>

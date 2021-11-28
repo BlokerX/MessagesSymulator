@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AddContactPopup.xaml.cs">
+      <DependentUpon>AddContactPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CreateNewUserPopup.xaml.cs">
+      <DependentUpon>CreateNewUserPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\EditTextPopup.xaml.cs">
       <DependentUpon>EditTextPopup.xaml</DependentUpon>
     </Compile>
@@ -78,11 +84,18 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Models\ChatUserModel.cs" />
     <Compile Include="Models\LinkComponentModel.cs" />
+    <Compile Include="Models\MessageCanelModel.cs" />
     <Compile Include="Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings_FrendsSettings.xaml.cs">
+      <DependentUpon>Settings_FrendsSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings_MyAccount.xaml.cs">
       <DependentUpon>Settings_MyAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings_UsersSettings.xaml.cs">
+      <DependentUpon>Settings_UsersSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -92,9 +105,19 @@
     <Compile Include="SerializeObject\ChatUserModelSerializeObject.cs" />
     <Compile Include="SerializeObject\ContactModelSerializeObject.cs" />
     <Compile Include="SerializeObject\LinkComponentModelSerializeObject.cs" />
+    <Compile Include="SerializeObject\MessageCanelModelSerializeObject.cs" />
     <Compile Include="SerializeObject\MessageModelSerializeObject.cs" />
+    <Compile Include="SerializeObject\SaveInformationsModelSerializeObject.cs" />
     <Compile Include="SerializeObject\UserInformationsSerializeObject.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Page Include="Controls\AddContactPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CreateNewUserPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\EditTextPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,7 +154,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Settings_FrendsSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Settings_MyAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings_UsersSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\ContactListViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\DefaultButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\StylishScrollbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\UserListViewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

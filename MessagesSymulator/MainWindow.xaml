@@ -106,7 +106,7 @@
                             <Ellipse>
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding ActiveUser.ImageSource}"
-                                        RenderOptions.BitmapScalingMode="Fant"/>
+                                        RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill"/>
                                 </Ellipse.Fill>
                             </Ellipse>
 
@@ -197,7 +197,7 @@
 
                     <StackPanel Orientation="Horizontal">
 
-                        <Label Content="{Binding ActiveUser.SelectedContact.Username}"
+                        <Label Content="{Binding ActiveUser.SelectedContact.InformationsAboutUser.Username}"
                        VerticalAlignment="Center"
                        Foreground="#fffff9"
                        FontWeight="Bold"
@@ -252,7 +252,7 @@
                           Background="Transparent"
                           BorderBrush="Transparent"
                           BorderThickness="0"
-                          ItemContainerStyle="{StaticResource ChatItem}" 
+                          ItemContainerStyle="{StaticResource ChatItem}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
 
                     <Grid Grid.Row="2">

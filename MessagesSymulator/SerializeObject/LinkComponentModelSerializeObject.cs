@@ -14,6 +14,7 @@ namespace MessagesSymulator.SerializeObject
         // Serialize
         public LinkComponentModelSerializeObject(Models.LinkComponentModel model)
         {
+            if (model != null)
             Link = model.Link;
         }
 

@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="MessagesSymulator.Pages.Settings_FrendsSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MessagesSymulator.Pages" xmlns:controls="clr-namespace:MessagesSymulator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <StackPanel Orientation="Horizontal">
+
+        <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                Margin="40,60,0,0">
+
+            <Label Content="Lista kontaktów:"
+                               Foreground="White"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,15"/>
+
+            <ListView ItemsSource="{Binding ActiveUser.Contacts}"
+                      Width="550"
+                      ItemContainerStyle="{StaticResource ContactListViewItem}"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      BorderBrush="Transparent"/>
+
+            <controls:TextButton Content="Dodaj kontakt" 
+                                 x:Name="AddContactButton"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Bottom"
+                                 Foreground="White"
+                                 Background="#5865f2"
+                                 MouseOverColor="#4751c4"
+                                 FontWeight="SemiBold"
+                                 FontSize="12"
+                                 Style="{StaticResource DefaultButton}"
+                                 Padding="15,7,15,7"
+                                 Margin="0,15,0,0"/>
+
+        </StackPanel>
+
+    </StackPanel>
+    
+</UserControl>

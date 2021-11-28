@@ -11,6 +11,7 @@ namespace MessagesSymulator.SerializeObject
     {
         public ObservableCollection<ContactModelSerializeObject> Contacts = new ObservableCollection<ContactModelSerializeObject>();
         public int SelectedContactIndex;
+        public List<int> ContactsCanels;
 
         // Serialize
         public ChatUserModelSerializeObject(Models.ChatUserModel model) : base(model)
@@ -20,11 +21,12 @@ namespace MessagesSymulator.SerializeObject
                 Contacts.Add(new ContactModelSerializeObject(item));
             }
             SelectedContactIndex = model.Contacts.IndexOf(model.SelectedContact);
+            ContactsCanels = model.ContactsCanels;
         }
 
         public ChatUserModelSerializeObject(ObservableCollection<ContactModelSerializeObject> contacts,
             int selectedContact, UserInformationsSerializeObject userInformations)
-            : base(userInformations.Username,userInformations.UsernameColor,userInformations.ImageSource,userInformations.ActiveState)
+            : base(userInformations.ID, userInformations.Username,userInformations.UsernameColor,userInformations.ImageSource,userInformations.ActiveState)
         {
             Contacts = contacts;
             SelectedContactIndex = selectedContact;
